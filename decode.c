@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
   file = fopen(FILENAME, filemode);
 
   if (file) {
-    // TODO: calculate number of chunks.
+    // TODO: calculate number of chunks from filesize.
     for (int i = 0; i < 50; i++) {
       fread(buffer, 1, sizeof buffer, file);
       uint16_t encoded_char = strtoul(buffer, NULL, 2);
