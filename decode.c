@@ -7,7 +7,6 @@
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
-  uint16_t encoded_char;
   FILE* file;
 
   const char* filemode = "r";
@@ -16,7 +15,7 @@ int main(int argc, char *argv[]) {
   if (file) {
     for (int i = 0; i < 50; i++) {
       fread(buffer, 1, sizeof buffer, file);
-      encoded_char = strtoul(buffer, NULL, 2);
+      uint16_t encoded_char = strtoul(buffer, NULL, 2);
 
       // try decoding with cipher 2^0 to 2^8:
       for (int cipher = 1; cipher <= 256; cipher *= 2){
