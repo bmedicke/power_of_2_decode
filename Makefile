@@ -1,7 +1,7 @@
 BIN=decode
 
-all: main.c decode.o decode.h
-	gcc main.c decode.o -o $(BIN)
+all: main.c decode.o decode.h helpers.h helpers.o
+	gcc main.c decode.o helpers.o -o $(BIN)
 
 clean:
 	rm $(BIN)

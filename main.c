@@ -1,19 +1,37 @@
-#include <stdlib.h> // return value makros.
-#include <stdio.h>
+#include <stdio.h> // printf().
+#include <stdlib.h> // return value macros.
+#include <unistd.h> // getopt.
 
-#include "decode.h"
+#include "decode.h" // decode(), verbose_decode().
+#include "helpers.h" // print_manual().
 
 #define CHUNKSIZE 16
 #define DEBUG 0
-#define FILENAME "in" // TODO: read filename from argv.
-
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
   FILE* file;
+  int option = 0; // getopt.
+  char* input_file = "";
+
+  // handle options and arguments:
+  while ((option = getopt(argc, argv, "hi:o:s:")) != -1) {
+    switch (option) {
+      case 'h':
+        print_manual();
+        return EXIT_SUCCESS;
+        break;
+      case 'i':
+        input_file = optarg;
+        break;
+      default:
+        print_manual();
+        return EXIT_FAILURE;
+    }
+  }
 
   const char* filemode = "r";
-  file = fopen(FILENAME, filemode);
+  file = fopen(input_file, filemode);
 
   if (file) {
     // read until EOF:
@@ -26,6 +44,9 @@ int main(int argc, char *argv[]) {
         printf("%c", decoded_char);
       }
     }
+  }  else { // wrong input file.
+    print_manual();
+    return EXIT_FAILURE;
   }
 
   fclose(file);
