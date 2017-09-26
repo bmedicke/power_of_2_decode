@@ -16,9 +16,7 @@ int main(int argc, char *argv[]) {
   file = fopen(FILENAME, filemode);
 
   if (file) {
-    // TODO: calculate number of chunks from filesize.
-    for (int i = 0; i < 1450; i++) {
-      fread(buffer, 1, sizeof buffer, file);
+    while ((fread(buffer, 1, sizeof buffer, file)) > 0) {
       unsigned int encoded_char = strtoul(buffer, NULL, 2);
       if (DEBUG){
         verbose_decode(encoded_char, buffer);
