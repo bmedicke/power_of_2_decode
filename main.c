@@ -57,6 +57,7 @@ if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
   output_fd = fopen(output_file, "w"); // write to file.
   statistic_fd = fopen(statistic_file, "w"); // write to file.
 
+  // TODO: extract this block to a function.
   if (input_fd) {
     // read until EOF:
     while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
@@ -71,6 +72,23 @@ if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
     print_manual();
     return EXIT_FAILURE;
   }
+
+  // close output and reopen it for reading:
+  fclose(output_fd);
+  output_fd = fopen(output_file, "r");
+
+  // TODO: extract this block to a function.
+  int wordcount = 0;
+  if (output_fd) {
+    char word[100];
+    while(fscanf(output_fd, "%s", word) == 1){
+      /* printf("%s\n", word); */
+      wordcount++;
+    }
+  }
+
+  printf("%i", wordcount);
+
 
   // clean up after ourselves:
   fclose(input_fd);
