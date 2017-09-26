@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
         int test_case = encoded_char / cipher;
 
         // expecting ASCII: 65(A) - 90(Z) + 32(space):
-        if ((test_case <= 90 && test_case >= 65) || test_case == 32){
+        if ((test_case >= 65 && test_case <= 90) || test_case == 32){
           printf("%.16s\t%i\t%c\t%i\n",
               buffer, encoded_char/cipher,
               (char)(encoded_char/cipher), cipher);
