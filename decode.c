@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdlib.h> // return value makros.
 #include <stdio.h>
 #include <stdint.h> // for 16bit uint.
 
