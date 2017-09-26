@@ -1,6 +1,5 @@
 #include <stdlib.h> // return value makros.
 #include <stdio.h>
-#include <stdint.h> // for 16bit uint.
 
 #include "decode.h"
 
@@ -19,7 +18,7 @@ int main(int argc, char *argv[]) {
     // TODO: calculate number of chunks from filesize.
     for (int i = 0; i < 30; i++) {
       fread(buffer, 1, sizeof buffer, file);
-      uint16_t encoded_char = strtoul(buffer, NULL, 2);
+      unsigned int encoded_char = strtoul(buffer, NULL, 2);
       char decoded_char = decode(encoded_char);
       printf("%c", decoded_char);
     }
