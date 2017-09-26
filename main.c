@@ -9,21 +9,20 @@
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
-
-  int option = 0; // getopt.
-  int verbose = 0;
-
-  // file descriptors:
-  FILE* input_fd;
-  FILE* output_fd;
-  FILE* statistic_fd;
+  int verbose = 0; // verbosity switch.
 
   // filenames:
   char* input_file = NULL;
   char* output_file = NULL;
   char* statistic_file = NULL;
 
+  // file descriptors:
+  FILE* input_fd;
+  FILE* output_fd;
+  FILE* statistic_fd;
+
   // handle options and their arguments:
+  int option = 0;
   while ((option = getopt(argc, argv, "hvi:o:s:")) != -1) {
     switch (option) {
       case 'h': // print the manual:
@@ -36,11 +35,11 @@ int main(int argc, char *argv[]) {
       case 'i': // file to read from:
         input_file = optarg;
         break;
-      case 's': // file to save statistics to:
-        statistic_file = optarg;
-        break;
       case 'o': // file to write decoded message to:
         output_file = optarg;
+        break;
+      case 's': // file to save statistics to:
+        statistic_file = optarg;
         break;
       default: // clarify usage:
         print_manual();
@@ -48,6 +47,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
+// abort when critical options are missing or incomplete:
 if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
     print_manual();
     return EXIT_FAILURE;
