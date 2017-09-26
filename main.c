@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
   file = fopen(FILENAME, filemode);
 
   if (file) {
-    while ((fread(buffer, 1, sizeof buffer, file)) > 0) {
+    // read until EOF:
+    while (fread(buffer, 1, sizeof buffer, file) > 0) {
       unsigned int encoded_char = strtoul(buffer, NULL, 2);
       if (DEBUG){
         verbose_decode(encoded_char, buffer);
