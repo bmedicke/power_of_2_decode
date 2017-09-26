@@ -3,7 +3,7 @@
 #include <stdint.h> // for 16bit uint.
 
 #define CHUNKSIZE 16
-#define FILENAME "in"
+#define FILENAME "in" // TODO: read filename from argv.
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   file = fopen(FILENAME, filemode);
 
   if (file) {
+    // TODO: calculate number of chunks.
     for (int i = 0; i < 50; i++) {
       fread(buffer, 1, sizeof buffer, file);
       uint16_t encoded_char = strtoul(buffer, NULL, 2);
