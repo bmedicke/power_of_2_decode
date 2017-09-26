@@ -7,7 +7,13 @@ clean:
 	rm $(BIN)
 
 run:
-	./$(BIN)
+	./$(BIN) -i in -o out -s stat
+
+verbose:
+	./$(BIN) -i in -o out -s stat -v
+
+help:
+	./$(BIN) -h
 
 format:
 	astyle *.c

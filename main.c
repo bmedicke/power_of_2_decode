@@ -6,50 +6,76 @@
 #include "helpers.h" // print_manual().
 
 #define CHUNKSIZE 16
-#define DEBUG 0
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
-  FILE* file;
-  int option = 0; // getopt.
-  char* input_file = "";
 
-  // handle options and arguments:
-  while ((option = getopt(argc, argv, "hi:o:s:")) != -1) {
+  int option = 0; // getopt.
+  int verbose = 0;
+
+  // file descriptors:
+  FILE* input_fd;
+  FILE* output_fd;
+  FILE* statistic_fd;
+
+  // filenames:
+  char* input_file = NULL;
+  char* output_file = NULL;
+  char* statistic_file = NULL;
+
+  // handle options and their arguments:
+  while ((option = getopt(argc, argv, "hvi:o:s:")) != -1) {
     switch (option) {
-      case 'h':
+      case 'h': // print the manual:
         print_manual();
         return EXIT_SUCCESS;
         break;
-      case 'i':
+      case 'v': // be more verbose for debugging:
+        verbose = 1;
+        break;
+      case 'i': // file to read from:
         input_file = optarg;
         break;
-      default:
+      case 's': // file to save statistics to:
+        statistic_file = optarg;
+        break;
+      case 'o': // file to write decoded message to:
+        output_file = optarg;
+        break;
+      default: // clarify usage:
         print_manual();
         return EXIT_FAILURE;
     }
   }
 
-  const char* filemode = "r";
-  file = fopen(input_file, filemode);
+if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
+    print_manual();
+    return EXIT_FAILURE;
+  }
 
-  if (file) {
+  input_fd = fopen(input_file, "r"); // read from file.
+  output_fd = fopen(output_file, "w"); // write to file.
+  statistic_fd = fopen(statistic_file, "w"); // write to file.
+
+  if (input_fd) {
     // read until EOF:
-    while (fread(buffer, 1, sizeof buffer, file) > 0) {
+    while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
       unsigned int encoded_char = strtoul(buffer, NULL, 2);
-      if (DEBUG){
+      if (verbose){
         verbose_decode(encoded_char, buffer);
-      } else {
-        char decoded_char = decode(encoded_char);
-        printf("%c", decoded_char);
       }
+      char decoded_char = decode(encoded_char);
+      fprintf(output_fd, "%c", decoded_char);
     }
   }  else { // wrong input file.
     print_manual();
     return EXIT_FAILURE;
   }
 
-  fclose(file);
+  // clean up after ourselves:
+  fclose(input_fd);
+  fclose(output_fd);
+  fclose(statistic_fd);
   return EXIT_SUCCESS;
 }
 
