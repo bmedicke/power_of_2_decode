@@ -4,6 +4,7 @@
 #include "decode.h"
 
 #define CHUNKSIZE 16
+#define DEBUG 0
 #define FILENAME "in" // TODO: read filename from argv.
 
 
@@ -16,13 +17,18 @@ int main(int argc, char *argv[]) {
 
   if (file) {
     // TODO: calculate number of chunks from filesize.
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 1450; i++) {
       fread(buffer, 1, sizeof buffer, file);
       unsigned int encoded_char = strtoul(buffer, NULL, 2);
-      char decoded_char = decode(encoded_char);
-      printf("%c", decoded_char);
+      if (DEBUG){
+        verbose_decode(encoded_char, buffer);
+      } else {
+        char decoded_char = decode(encoded_char);
+        printf("%c", decoded_char);
+      }
     }
   }
+
   fclose(file);
   return EXIT_SUCCESS;
 }
