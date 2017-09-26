@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
       uint16_t encoded_char = strtoul(buffer, NULL, 2);
       char decoded_char = decode(encoded_char);
       printf("%c", decoded_char);
-      /* printf("%i\t%c\t%i\n", test_case, (char)(test_case), cipher); */
     }
   }
   fclose(file);
