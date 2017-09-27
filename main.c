@@ -1,6 +1,7 @@
 #include <stdio.h> // printf().
 #include <stdlib.h> // return value macros.
 #include <unistd.h> // getopt.
+#include <string.h> // strlen().
 
 #include "decode.h" // decode(), verbose_decode().
 #include "helpers.h" // print_manual().
@@ -81,13 +82,24 @@ int main(int argc, char *argv[]) {
   int wordcount = 0;
   if (output_fd) {
     char word[100];
+
+    // count total words.
     while (fscanf(output_fd, "%s", word) == 1) {
-      /* printf("%s\n", word); */
       wordcount++;
     }
-  }
 
-  printf("%i", wordcount);
+    // create dynamic array with 'wordcount' pointers to strings:
+    char** words;
+    words = malloc(wordcount * sizeof(char*)); // MALLOC!
+
+    rewind(output_fd);
+    for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
+      // create dynamic char array to hold current word:
+      char** ptr = malloc(strlen(word) + 1); // MALLOC!
+      *ptr = word;
+      printf("[%i] %s - %i\n", i, *ptr, strlen(*ptr));
+    }
+  }
 
   // clean up after ourselves:
   fclose(input_fd);
