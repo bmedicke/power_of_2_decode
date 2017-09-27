@@ -26,3 +26,4 @@ void verbose_decode(unsigned int encoded_char, char *buffer) {
     }
   }
 }
+

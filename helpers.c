@@ -10,3 +10,4 @@ void print_manual() {
           "You can also use -h to see this message.\n"
         );
 }
+
