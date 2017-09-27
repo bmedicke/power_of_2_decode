@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
       words[i] = malloc(strlen(word) + 1); // MALLOC! --2
       strcpy(words[i], word);
       if (verbose){
-        printf("[%i] %s - %i\n", i, words[i], strlen(words[i]));
+        printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
       }
     }
 
