@@ -94,10 +94,16 @@ int main(int argc, char *argv[]) {
 
     rewind(output_fd);
     for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
-      // create dynamic char array to hold current word:
-      char** ptr = malloc(strlen(word) + 1); // MALLOC! -- 2
-      *ptr = word;
-      printf("[%i] %s - %i\n", i, *ptr, strlen(*ptr));
+      // create dynamic char array to hold the current word:
+      words[i] = malloc(strlen(word) + 1); // MALLOC! --2
+      strcpy(words[i], word);
+      if (verbose){
+        printf("[%i] %s - %i\n", i, words[i], strlen(words[i]));
+      }
+    }
+
+    for(int i = 0; i < wordcount; i++) {
+      /* printf("%s ", words[i]); */
     }
 
     // free memory for the elements of the words array:
@@ -106,7 +112,7 @@ int main(int argc, char *argv[]) {
     }
 
     // free memory for the words array itself:
-    free(words);
+    free(words); // FREE! -- 1
   }
 
   // clean up after ourselves:
