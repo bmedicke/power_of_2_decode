@@ -17,3 +17,6 @@ verbose:
 
 help:
 	./$(BIN) -h
+
+format:
+	astyle -A2 *.c *.h

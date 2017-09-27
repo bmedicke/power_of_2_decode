@@ -12,14 +12,14 @@ int main(int argc, char *argv[]) {
   int verbose = 0; // verbosity switch.
 
   // filenames:
-  char* input_file = NULL;
-  char* output_file = NULL;
-  char* statistic_file = NULL;
+  char *input_file = NULL;
+  char *output_file = NULL;
+  char *statistic_file = NULL;
 
   // file descriptors:
-  FILE* input_fd;
-  FILE* output_fd;
-  FILE* statistic_fd;
+  FILE *input_fd;
+  FILE *output_fd;
+  FILE *statistic_fd;
 
   // handle options and their arguments:
   int option = 0;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
   }
 
 // abort when critical options are missing or incomplete:
-if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
+  if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
     print_manual();
     return EXIT_FAILURE;
   }
@@ -62,7 +62,7 @@ if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
     // read until EOF:
     while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
       unsigned int encoded_char = strtoul(buffer, NULL, 2);
-      if (verbose){
+      if (verbose) {
         verbose_decode(encoded_char, buffer);
       }
       char decoded_char = decode(encoded_char);
@@ -81,14 +81,13 @@ if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
   int wordcount = 0;
   if (output_fd) {
     char word[100];
-    while(fscanf(output_fd, "%s", word) == 1){
+    while (fscanf(output_fd, "%s", word) == 1) {
       /* printf("%s\n", word); */
       wordcount++;
     }
   }
 
   printf("%i", wordcount);
-
 
   // clean up after ourselves:
   fclose(input_fd);
