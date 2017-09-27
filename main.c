@@ -90,15 +90,23 @@ int main(int argc, char *argv[]) {
 
     // create dynamic array with 'wordcount' pointers to strings:
     char** words;
-    words = malloc(wordcount * sizeof(char*)); // MALLOC!
+    words = malloc(wordcount * sizeof(char*)); // MALLOC! -- 1
 
     rewind(output_fd);
     for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold current word:
-      char** ptr = malloc(strlen(word) + 1); // MALLOC!
+      char** ptr = malloc(strlen(word) + 1); // MALLOC! -- 2
       *ptr = word;
       printf("[%i] %s - %i\n", i, *ptr, strlen(*ptr));
     }
+
+    // free memory for the elements of the words array:
+    for (int i = 0; i < wordcount; i++) {
+      free(words[i]); // FREE! -- 2
+    }
+
+    // free memory for the words array itself:
+    free(words);
   }
 
   // clean up after ourselves:
