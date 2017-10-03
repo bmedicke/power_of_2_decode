@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
     }
 
     for(int i = 0; i < wordcount; i++) {
-      /* printf("%s ", words[i]); */
+      printf("%s ", words[i]);
     }
 
     // free memory for the elements of the words array:

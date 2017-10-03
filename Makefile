@@ -13,7 +13,7 @@ run:
 	./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE)
 
 verbose:
-	./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE) -v
+	./$(BIN) -v -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE)
 
 help:
 	./$(BIN) -h
