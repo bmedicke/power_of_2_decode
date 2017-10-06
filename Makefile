@@ -2,6 +2,7 @@ BIN=decode
 IN_FILE=in
 OUT_FILE=out
 STAT_FILE=stat
+SYMLINK_TARGET=/usr/local/bin
 
 COMPILER=clang
 # COMPILER=gcc
@@ -29,7 +30,7 @@ format:
 	astyle -A2 *.{c,h} && git diff
 
 link:
-	/bin/ln -fns $(CURDIR)/$(BIN) /usr/local/bin
+	/bin/ln -ns $(CURDIR)/$(BIN) $(SYMLINK_TARGET)
 
 watch:
 	ls *.{c,h} | entr sh -c "clear;make && hr ─ && make run"

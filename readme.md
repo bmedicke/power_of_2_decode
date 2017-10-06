@@ -32,7 +32,7 @@ Format all source files and shows changes via a git diff. Requires [astyle](http
 
 ### link
 
-Create a symlink pointing to the binary in `/usr/local/bin`.
+Create a symlink pointing to the binary. Default target is `/usr/local/bin`.
 
 ### watch
 
