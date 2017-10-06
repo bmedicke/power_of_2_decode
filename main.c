@@ -19,7 +19,8 @@
 #include <unistd.h> // getopt.
 #include <stdbool.h> // booleans.
 
-#include "helpers.h" // print_manual(), write_decoded_text().
+// print_manual(), write_decoded_text(), write_statistics():
+#include "helpers.h"
 
 /** @brief the main entry point  */
 
