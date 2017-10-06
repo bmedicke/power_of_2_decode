@@ -1,5 +1,9 @@
 # readme
 
+# usage
+
+See `decode -h`.
+
 # compiling
 
 Tested with both [clang](https://clang.llvm.org) and [gcc](https://gcc.gnu.org).
