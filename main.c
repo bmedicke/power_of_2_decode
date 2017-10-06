@@ -71,26 +71,16 @@ int main(int argc, char *argv[]) {
   decoded_fd = fopen(decoded_file, "w"); // write to file.
   statistic_fd = fopen(statistic_file, "w"); // write to file.
 
-  if (encoded_fd && decoded_fd &&
-      write_decoded_text(encoded_fd, decoded_fd, verbose)) {
-    if (verbose) {
-      printf("decoding worked\n");
-    }
-  } else { // something went wrong:
+  if (!write_decoded_text(encoded_fd, decoded_fd, verbose)) {
     print_manual();
     return EXIT_FAILURE;
   }
 
-  // close decoded and reopen it for reading:
+  // close decoded_fd and reopen it for reading:
   fclose(decoded_fd);
   decoded_fd = fopen(decoded_file, "r");
 
-  if (decoded_fd && statistic_fd &&
-      write_statistics(decoded_fd, statistic_fd, verbose)) {
-    if (verbose) {
-      printf("\ngenerating statistics worked\n");
-    }
-  } else { // something went wrong:
+  if (!write_statistics(decoded_fd, statistic_fd, verbose)) {
     print_manual();
     return EXIT_FAILURE;
   }

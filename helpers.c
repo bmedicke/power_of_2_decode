@@ -26,22 +26,28 @@ void print_manual() {
 }
 
 _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
-  char buffer[CHUNKSIZE];
-  // read until EOF:
-  while (fread(buffer, 1, sizeof buffer, encoded_fd) > 0) {
-    unsigned long encoded_char = strtoul(buffer, NULL, 2);
-    if (verbose) {
-      verbose_decode(encoded_char, buffer);
+  if (!encoded_fd || !decoded_fd) {
+    return false;
+  } else {
+    char buffer[CHUNKSIZE];
+    // read until EOF:
+    while (fread(buffer, 1, sizeof buffer, encoded_fd) > 0) {
+      unsigned long encoded_char = strtoul(buffer, NULL, 2);
+      if (verbose) {
+        verbose_decode(encoded_char, buffer);
+      }
+      char decoded_char = decode_character(encoded_char);
+      fprintf(decoded_fd, "%c", decoded_char);
     }
-    char decoded_char = decode_character(encoded_char);
-    fprintf(decoded_fd, "%c", decoded_char);
   }
-  return true; // TODO: add error handling.
+  return true; // TODO: add more error handling.
 }
 
 _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
-  unsigned long wordcount = 0;
-  if (decoded_fd) {
+  if (!decoded_fd || !statistic_fd) {
+    return false;
+  } else {
+    unsigned long wordcount = 0;
     char word[100];
 
     // count total words.
@@ -79,5 +85,5 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     // free memory for the words array itself:
     free(words); // FREE! -- 1
   }
-  return true; // TODO: add error handling.
+  return true; // TODO: add more error handling.
 }
