@@ -1,3 +1,10 @@
+/*************************************
+*  Copyright (C) Benjamin Medicke
+*  All rights reserved.
+*  MIT License
+**************************************/
+
+
 #ifndef DECODE_HEADER
 #define DECODE_HEADER
 

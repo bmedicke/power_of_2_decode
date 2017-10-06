@@ -1,3 +1,10 @@
+/*************************************
+*  Copyright (C) Benjamin Medicke
+*  All rights reserved.
+*  MIT License
+**************************************/
+
+
 #include <stdio.h> // printf().
 #include <stdlib.h> // return value macros, malloc.
 #include <unistd.h> // getopt.

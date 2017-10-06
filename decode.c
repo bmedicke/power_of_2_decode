@@ -1,3 +1,10 @@
+/*************************************
+*  Copyright (C) Benjamin Medicke
+*  All rights reserved.
+*  MIT License
+**************************************/
+
+
 #include <stdio.h>
 #include "decode.h"
 
