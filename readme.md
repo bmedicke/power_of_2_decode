@@ -69,3 +69,14 @@ Watches source and markdown files for changes, regenerates the documentation wit
 - [Doxygen usage examples (for C)](http://fnch.users.sourceforge.net/doxygen_c.html)
 - [How to make an introduction page with Doxygen](https://stackoverflow.com/questions/9502426/how-to-make-an-introduction-page-with-doxygen)
 
+# error handling
+
+- input file character count not divisible by 16
+- input file characters not exclusively ones and zeroes
+- input file characters outside the defined ASCII range (A-Z + space)
+- any file not writeable (chowned by root)
+
+## known limitations
+
+- can't handle words longer than `MAXWORDSIZE`
+- order of words with same count is random (based on hash table)
