@@ -14,6 +14,7 @@ all: main.c decode.h decode.o helpers.h helpers.o
 
 clean:
 	rm $(BIN) out stat *.o
+	rm -rf html
 
 run:
 	./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE)
