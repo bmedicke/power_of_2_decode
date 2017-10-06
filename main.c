@@ -27,13 +27,13 @@ int main(int argc, char *argv[]) {
   _Bool verbose = 0; // verbosity switch.
 
   // filenames:
-  char *input_file = NULL;
-  char *output_file = NULL;
+  char *encoded_file = NULL;
+  char *decoded_file = NULL;
   char *statistic_file = NULL;
 
   // file descriptors:
-  FILE *input_fd;
-  FILE *output_fd;
+  FILE *encoded_fd;
+  FILE *decoded_fd;
   FILE *statistic_fd;
 
   // handle options and their arguments:
@@ -47,10 +47,10 @@ int main(int argc, char *argv[]) {
         verbose = 1;
         break;
       case 'i': // file to read from:
-        input_file = optarg;
+        encoded_file = optarg;
         break;
       case 'o': // file to write decoded message to:
-        output_file = optarg;
+        decoded_file = optarg;
         break;
       case 's': // file to save statistics to:
         statistic_file = optarg;
@@ -62,28 +62,28 @@ int main(int argc, char *argv[]) {
   }
 
   // abort when critical options are missing or incomplete:
-  if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
+  if (encoded_file == NULL || decoded_file == NULL || statistic_file == NULL) {
     print_manual();
     return EXIT_FAILURE;
   }
 
-  input_fd = fopen(input_file, "r"); // read from file.
-  output_fd = fopen(output_file, "w"); // write to file.
+  encoded_fd = fopen(encoded_file, "r"); // read from file.
+  decoded_fd = fopen(decoded_file, "w"); // write to file.
   statistic_fd = fopen(statistic_file, "w"); // write to file.
 
-  if (input_fd && output_fd &&
-      write_decoded_text(input_fd, output_fd, verbose)) {
+  if (encoded_fd && decoded_fd &&
+      write_decoded_text(encoded_fd, decoded_fd, verbose)) {
     // TODO: that's a bit sketchy.
-  } else { // wrong input or output file.
+  } else { // wrong encoded or decoded file.
     print_manual();
     return EXIT_FAILURE;
   }
 
-  // close output and reopen it for reading:
-  fclose(output_fd);
-  output_fd = fopen(output_file, "r");
+  // close decoded and reopen it for reading:
+  fclose(decoded_fd);
+  decoded_fd = fopen(decoded_file, "r");
 
-  if (write_statistics(output_fd, statistic_fd, verbose)){
+  if (write_statistics(decoded_fd, statistic_fd, verbose)){
     // TODO: that's a bit sketchy as well.
   } else {
     print_manual();
@@ -91,8 +91,8 @@ int main(int argc, char *argv[]) {
   }
 
   // clean up after ourselves:
-  fclose(input_fd);
-  fclose(output_fd);
+  fclose(encoded_fd);
+  fclose(decoded_fd);
   fclose(statistic_fd);
   return EXIT_SUCCESS;
 }

@@ -19,11 +19,13 @@
 void print_manual(void);
 
 /** @brief reads encoded and writes decoded text to a file */
-_Bool write_decoded_text(FILE *input_fd, FILE *output_fd, _Bool verbose);
-// TODO: make input_fd const?
+_Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose);
+// TODO: make encoded_fd const?
 
-_Bool write_statistics(FILE *output_fd, FILE *statistic_fd, _Bool verbose);
-// TODO: make output_fd const? rename it?
+
+/** @brief read decoded text and writes statistics to a file */
+_Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose);
+// TODO: make decoded_fd const?
 
 #endif
 

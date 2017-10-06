@@ -17,7 +17,7 @@
 void print_manual() {
   printf( "Required arguemtns:\n"
           "\t-i <encoded input file>\n"
-          "\t-o <output file for decoded string>\n"
+          "\t-o <decoded output file for decoded string>\n"
           "\t-s <file for statistics>\n"
           "Optional:\n"
           "\t-v verbose debug output\n"
@@ -25,27 +25,27 @@ void print_manual() {
         );
 }
 
-_Bool write_decoded_text(FILE *input_fd, FILE *output_fd, _Bool verbose) {
+_Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
   char buffer[CHUNKSIZE];
   // read until EOF:
-  while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
+  while (fread(buffer, 1, sizeof buffer, encoded_fd) > 0) {
     unsigned long encoded_char = strtoul(buffer, NULL, 2);
     if (verbose) {
       verbose_decode(encoded_char, buffer);
     }
     char decoded_char = decode_character(encoded_char);
-    fprintf(output_fd, "%c", decoded_char);
+    fprintf(decoded_fd, "%c", decoded_char);
   }
   return true; // TODO: add error handling.
 }
 
- _Bool write_statistics(FILE *output_fd, FILE *statistic_fd, _Bool verbose) {
+ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   unsigned long wordcount = 0;
-  if (output_fd) {
+  if (decoded_fd) {
     char word[100];
 
     // count total words.
-    while (fscanf(output_fd, "%s", word) == 1) {
+    while (fscanf(decoded_fd, "%s", word) == 1) {
       wordcount++;
     }
 
@@ -53,8 +53,8 @@ _Bool write_decoded_text(FILE *input_fd, FILE *output_fd, _Bool verbose) {
     char **words;
     words = malloc(wordcount * sizeof(char *)); // MALLOC! -- 1
 
-    rewind(output_fd);
-    for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
+    rewind(decoded_fd);
+    for (int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
       words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
       strcpy(words[i], word);
