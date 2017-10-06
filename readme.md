@@ -66,10 +66,19 @@ Everything not written by me is in the `3rdparty` folder.
 - [return value of malloc](https://stackoverflow.com/questions/3585847/return-value-of-malloc)
   - __No cast is needed on `malloc()` in C; however, it is in C++!__
 
+
 ## doxygen
 
 - [Doxygen usage examples (for C)](http://fnch.users.sourceforge.net/doxygen_c.html)
 - [How to make an introduction page with Doxygen](https://stackoverflow.com/questions/9502426/how-to-make-an-introduction-page-with-doxygen)
+
+## klib
+
+- [Implementing Generic Hash Library in C](https://attractivechaos.wordpress.com/2008/09/02/implementing-generic-hash-library-in-c/)
+- [khash.h documentation (very outdated)](http://samtools.sourceforge.net/samtools/khash/index.html)
+
+- [examples from the /test directory](https://github.com/attractivechaos/klib/tree/master/test)
+
 
 # error handling
 
@@ -77,6 +86,7 @@ Everything not written by me is in the `3rdparty` folder.
 - input file characters not exclusively ones and zeroes
 - input file characters outside the defined ASCII range (A-Z + space)
 - any file not writeable (chowned by root)
+
 
 ## known limitations
 
