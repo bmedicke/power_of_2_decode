@@ -28,4 +28,4 @@ link:
 	/bin/ln -fns $(CURDIR)/$(BIN) /usr/local/bin
 
 watch:
-	ls *.{h,c} | entr sh -c "clear;make && hr ─ && make run"
+	ls *.{c,h} | entr sh -c "clear;make && hr ─ && make run"
