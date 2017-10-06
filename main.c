@@ -4,6 +4,15 @@
 *  MIT License
 **************************************/
 
+/**
+ * \file
+ * @brief The decode program.
+
+ * This program is used to decode texts encrypted in the following fashion:\n
+ * `ASCII * 2^[rand 0-8]` for each character.\n
+ * Valid characters are uppercase A-Z plus space.
+ */
+
 
 #include <stdio.h> // printf().
 #include <stdlib.h> // return value macros, malloc.
@@ -14,7 +23,10 @@
 #include "decode.h" // decode_character(), verbose_decode().
 #include "helpers.h" // print_manual().
 
+/** @brief Size of each encoded character in bits */
 #define CHUNKSIZE 16
+
+/** @brief the main entry point  */
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
