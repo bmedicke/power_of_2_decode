@@ -14,17 +14,13 @@
  */
 
 
-#include <stdio.h> // printf().
+#include <stdio.h> // printf(), FILE.
 #include <stdlib.h> // return value macros, malloc.
 #include <unistd.h> // getopt.
 #include <string.h> // strlen().
 #include <stdbool.h> // booleans.
 
-#include "decode.h" // decode_character(), verbose_decode().
-#include "helpers.h" // print_manual().
-
-/** @brief Size of each encoded character in bits */
-#define CHUNKSIZE 16
+#include "helpers.h" // print_manual(), write_decoded_text().
 
 /** @brief the main entry point  */
 
@@ -76,20 +72,10 @@ int main(int argc, char *argv[]) {
   output_fd = fopen(output_file, "w"); // write to file.
   statistic_fd = fopen(statistic_file, "w"); // write to file.
 
-  // TODO: extract this block to a function.
-  // int write_output(input_fd, output_fd, verbose)
-  if (input_fd) {
-    char buffer[CHUNKSIZE];
-    // read until EOF:
-    while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
-      unsigned long encoded_char = strtoul(buffer, NULL, 2);
-      if (verbose) {
-        verbose_decode(encoded_char, buffer);
-      }
-      char decoded_char = decode_character(encoded_char);
-      fprintf(output_fd, "%c", decoded_char);
-    }
-  }  else { // wrong input file.
+  if (input_fd && output_fd &&
+      write_decoded_text(input_fd, output_fd, verbose)) {
+    // that's a bit sketchy.
+  } else { // wrong input file.
     print_manual();
     return EXIT_FAILURE;
   }
