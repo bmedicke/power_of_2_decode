@@ -29,5 +29,8 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose);
 /** @brief read decoded text and write statistics to a file */
 _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose);
 
+/** @brief returns number of words in a file */
+unsigned long count_words(FILE *fd);
+
 #endif
 

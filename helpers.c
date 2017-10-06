@@ -14,6 +14,10 @@
 /** @brief Size of each encoded character in bits */
 #define CHUNKSIZE 16
 
+/** @brief Size of longest possible word */
+#define MAXWORDSIZE 100
+// TODO: don't make this constant.
+
 void print_manual() {
   printf( "Required arguemtns:\n"
           "\t-i <encoded input file>\n"
@@ -23,6 +27,15 @@ void print_manual() {
           "\t-v verbose debug output\n"
           "You can also use -h to see this message.\n"
         );
+}
+
+unsigned long count_words(FILE *fd) {
+  unsigned long wordcount = 0;
+  char word[MAXWORDSIZE];
+  while (fscanf(fd, "%s", word) == 1) {
+    wordcount++;
+  }
+  return wordcount;
 }
 
 _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
@@ -47,19 +60,14 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   if (!decoded_fd || !statistic_fd) {
     return false;
   } else {
-    unsigned long wordcount = 0;
-    char word[100];
-
-    // count total words.
-    while (fscanf(decoded_fd, "%s", word) == 1) {
-      wordcount++;
-    }
+    unsigned long wordcount = count_words(decoded_fd);
+    rewind(decoded_fd);
 
     // create dynamic array with 'wordcount' pointers to strings:
     char **words;
     words = malloc(wordcount * sizeof(char *)); // MALLOC! -- 1
 
-    rewind(decoded_fd);
+    char word[MAXWORDSIZE];
     for (int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
       words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
@@ -70,7 +78,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     }
 
     // print text from memory:
-    if (verbose) {
+    if (!verbose) {
       printf("text from memory:\n");
       for (unsigned long i = 0; i < wordcount; i++) {
         printf("%s ", words[i]);
