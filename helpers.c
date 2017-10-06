@@ -7,6 +7,7 @@
 #include <stdio.h> // printf, FILE.
 #include <stdbool.h> // booleans.
 #include <stdlib.h> // strtoul.
+#include <string.h> // strlen().
 
 #include "decode.h" // decode_character(), verbose_decode().
 
@@ -37,3 +38,42 @@ _Bool write_decoded_text(FILE *input_fd, FILE *output_fd, _Bool verbose) {
   }
   return true; // TODO: add error handling.
 }
+
+ _Bool write_statistics(FILE *output_fd, FILE *statistic_fd, _Bool verbose) {
+  unsigned long wordcount = 0;
+  if (output_fd) {
+    char word[100];
+
+    // count total words.
+    while (fscanf(output_fd, "%s", word) == 1) {
+      wordcount++;
+    }
+
+    // create dynamic array with 'wordcount' pointers to strings:
+    char **words;
+    words = malloc(wordcount * sizeof(char *)); // MALLOC! -- 1
+
+    rewind(output_fd);
+    for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
+      // create dynamic char array to hold the current word:
+      words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
+      strcpy(words[i], word);
+      if (verbose) {
+        printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
+      }
+    }
+
+    for (unsigned long i = 0; i < wordcount; i++) {
+      printf("%s ", words[i]);
+    }
+
+    // free memory for the elements of the words array:
+    for (unsigned long i = 0; i < wordcount; i++) {
+      free(words[i]); // FREE! -- 2
+    }
+
+    // free memory for the words array itself:
+    free(words); // FREE! -- 1
+  }
+   return true; // TODO: add error handling.
+ }

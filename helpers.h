@@ -22,5 +22,8 @@ void print_manual(void);
 _Bool write_decoded_text(FILE *input_fd, FILE *output_fd, _Bool verbose);
 // TODO: make input_fd const?
 
+_Bool write_statistics(FILE *output_fd, FILE *statistic_fd, _Bool verbose);
+// TODO: make output_fd const? rename it?
+
 #endif
 

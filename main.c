@@ -17,7 +17,6 @@
 #include <stdio.h> // printf(), FILE.
 #include <stdlib.h> // return value macros, malloc.
 #include <unistd.h> // getopt.
-#include <string.h> // strlen().
 #include <stdbool.h> // booleans.
 
 #include "helpers.h" // print_manual(), write_decoded_text().
@@ -62,7 +61,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-// abort when critical options are missing or incomplete:
+  // abort when critical options are missing or incomplete:
   if (input_file == NULL || output_file == NULL || statistic_file == NULL) {
     print_manual();
     return EXIT_FAILURE;
@@ -74,8 +73,8 @@ int main(int argc, char *argv[]) {
 
   if (input_fd && output_fd &&
       write_decoded_text(input_fd, output_fd, verbose)) {
-    // that's a bit sketchy.
-  } else { // wrong input file.
+    // TODO: that's a bit sketchy.
+  } else { // wrong input or output file.
     print_manual();
     return EXIT_FAILURE;
   }
@@ -84,41 +83,11 @@ int main(int argc, char *argv[]) {
   fclose(output_fd);
   output_fd = fopen(output_file, "r");
 
-  // TODO: extract this block to a function.
-  unsigned long wordcount = 0;
-  if (output_fd) {
-    char word[100];
-
-    // count total words.
-    while (fscanf(output_fd, "%s", word) == 1) {
-      wordcount++;
-    }
-
-    // create dynamic array with 'wordcount' pointers to strings:
-    char **words;
-    words = malloc(wordcount * sizeof(char *)); // MALLOC! -- 1
-
-    rewind(output_fd);
-    for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
-      // create dynamic char array to hold the current word:
-      words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
-      strcpy(words[i], word);
-      if (verbose) {
-        printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
-      }
-    }
-
-    for (unsigned long i = 0; i < wordcount; i++) {
-      printf("%s ", words[i]);
-    }
-
-    // free memory for the elements of the words array:
-    for (unsigned long i = 0; i < wordcount; i++) {
-      free(words[i]); // FREE! -- 2
-    }
-
-    // free memory for the words array itself:
-    free(words); // FREE! -- 1
+  if (write_statistics(output_fd, statistic_fd, verbose)){
+    // TODO: that's a bit sketchy as well.
+  } else {
+    print_manual();
+    return EXIT_FAILURE;
   }
 
   // clean up after ourselves:
