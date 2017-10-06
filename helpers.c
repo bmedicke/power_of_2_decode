@@ -87,6 +87,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     khash_t(known_words) *known_words_ptr; // hash map pointer.
     known_words_ptr = kh_init(known_words); // initialize hash map.
 
+    int max_wordcount = 0;
     for (int i = 0; i < total_wordcount; i++) {
       int count = 0;
 
@@ -104,25 +105,32 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
         known_words_it = kh_get(known_words, known_words_ptr, words[i]);
         kh_value(known_words_ptr, known_words_it) = count;
       }
-    }
 
-    for (known_words_it = kh_begin(known_words_ptr);
-        known_words_it != kh_end(known_words_ptr);
-        ++known_words_it) {
-      if (kh_exist(known_words_ptr, known_words_it)) {
-        int val;
-        const char* key;
-        val = kh_val(known_words_ptr, known_words_it);
-        key = kh_key(known_words_ptr, known_words_it);
-        fprintf(statistic_fd, "%s: %i\n", key, val);
-        if (verbose) {
-          printf("%s: %i\n", key, val);
-        }
+      // keep track of the highest occuring word:
+      if (max_wordcount < count) {
+        max_wordcount = count;
       }
     }
 
-    if (verbose) {
+    if (!verbose) {
       printf("Number of unique words: %i\n", kh_size(known_words_ptr)); 
+      printf("Highest wordcount: %i\n", max_wordcount);
+    }
+
+    for (; max_wordcount > 0; max_wordcount--) {
+      for (known_words_it = kh_begin(known_words_ptr);
+          known_words_it != kh_end(known_words_ptr);
+          ++known_words_it) {
+        if (kh_exist(known_words_ptr, known_words_it)) {
+          int val;
+          const char* key;
+          val = kh_val(known_words_ptr, known_words_it);
+          key = kh_key(known_words_ptr, known_words_it);
+          if (max_wordcount == val) {
+            fprintf(statistic_fd, "%s: %i\n", key, val);
+          }
+        }
+      }
     }
 
     // free memory for the elements of the words array:
