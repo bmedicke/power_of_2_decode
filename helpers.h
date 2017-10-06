@@ -1,7 +1,7 @@
 #ifndef HELPERS_HEADER
 #define HELPERS_HEADER
 
-void print_manual();
+void print_manual(void);
 
 #endif
 
