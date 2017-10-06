@@ -112,7 +112,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       }
     }
 
-    if (!verbose) {
+    if (verbose) {
       printf("Number of unique words: %i\n", kh_size(known_words_ptr)); 
       printf("Highest wordcount: %i\n", max_wordcount);
     }
