@@ -1,5 +1,5 @@
 #include <stdio.h> // printf().
-#include <stdlib.h> // return value macros.
+#include <stdlib.h> // return value macros, malloc.
 #include <unistd.h> // getopt.
 #include <string.h> // strlen().
 #include <stdbool.h> // booleans.
