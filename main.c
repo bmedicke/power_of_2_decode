@@ -2,6 +2,7 @@
 #include <stdlib.h> // return value macros.
 #include <unistd.h> // getopt.
 #include <string.h> // strlen().
+#include <stdbool.h> // booleans.
 
 #include "decode.h" // decode(), verbose_decode().
 #include "helpers.h" // print_manual().
@@ -10,7 +11,7 @@
 
 int main(int argc, char *argv[]) {
   char buffer[CHUNKSIZE];
-  int verbose = 0; // verbosity switch.
+  _Bool verbose = 0; // verbosity switch.
 
   // filenames:
   char *input_file = NULL;
