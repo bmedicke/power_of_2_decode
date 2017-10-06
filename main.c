@@ -30,7 +30,6 @@ int main(int argc, char *argv[]) {
       case 'h': // print the manual:
         print_manual();
         return EXIT_SUCCESS;
-        break;
       case 'v': // be more verbose for debugging:
         verbose = 1;
         break;
