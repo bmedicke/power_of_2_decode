@@ -22,7 +22,7 @@ help:
 	./$(BIN) -h
 
 format:
-	astyle -A2 *.c *.h
+	astyle -A2 *.{c,h} && git diff
 
 link:
 	/bin/ln -fns $(CURDIR)/$(BIN) /usr/local/bin
