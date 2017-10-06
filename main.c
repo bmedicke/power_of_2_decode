@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   if (input_fd) {
     // read until EOF:
     while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
-      unsigned int encoded_char = strtoul(buffer, NULL, 2);
+      unsigned long encoded_char = strtoul(buffer, NULL, 2);
       if (verbose) {
         verbose_decode(encoded_char, buffer);
       }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
   output_fd = fopen(output_file, "r");
 
   // TODO: extract this block to a function.
-  int wordcount = 0;
+  unsigned long wordcount = 0;
   if (output_fd) {
     char word[100];
 
@@ -102,12 +102,12 @@ int main(int argc, char *argv[]) {
       }
     }
 
-    for (int i = 0; i < wordcount; i++) {
+    for (unsigned long i = 0; i < wordcount; i++) {
       printf("%s ", words[i]);
     }
 
     // free memory for the elements of the words array:
-    for (int i = 0; i < wordcount; i++) {
+    for (unsigned long i = 0; i < wordcount; i++) {
       free(words[i]); // FREE! -- 2
     }
 
