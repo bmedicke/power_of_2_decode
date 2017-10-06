@@ -32,7 +32,7 @@ Show the help text.
 
 ### format
 
-Format all source files and shows changes via a git diff. Requires [astyle](http://astyle.sourceforge.net) and [git](http://git.com).
+Format all source files and shows changes via a git diff to make individual decisions. Requires [astyle](http://astyle.sourceforge.net) and [git](http://git.com).
 
 ### link
 
