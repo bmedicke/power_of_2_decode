@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "decode.h"
 
-char decode(unsigned long encoded_char) {
+char decode_character(unsigned long encoded_char) {
   // try decoding with cipher 2^0 to 2^8:
   for (int cipher = 1; cipher <= 256; cipher *= 2) {
     int test_case = encoded_char / cipher;

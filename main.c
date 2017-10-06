@@ -11,7 +11,7 @@
 #include <string.h> // strlen().
 #include <stdbool.h> // booleans.
 
-#include "decode.h" // decode(), verbose_decode().
+#include "decode.h" // decode_character(), verbose_decode().
 #include "helpers.h" // print_manual().
 
 #define CHUNKSIZE 16
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
       if (verbose) {
         verbose_decode(encoded_char, buffer);
       }
-      char decoded_char = decode(encoded_char);
+      char decoded_char = decode_character(encoded_char);
       fprintf(output_fd, "%c", decoded_char);
     }
   }  else { // wrong input file.
