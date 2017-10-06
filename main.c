@@ -14,8 +14,8 @@
  */
 
 
-#include <stdio.h> // printf(), FILE.
-#include <stdlib.h> // return value macros, malloc.
+#include <stdio.h> // FILE.
+#include <stdlib.h> // return value macros.
 #include <unistd.h> // getopt.
 #include <stdbool.h> // booleans.
 
@@ -73,8 +73,10 @@ int main(int argc, char *argv[]) {
 
   if (encoded_fd && decoded_fd &&
       write_decoded_text(encoded_fd, decoded_fd, verbose)) {
-    // TODO: that's a bit sketchy.
-  } else { // wrong encoded or decoded file.
+    if (verbose) {
+      printf("decoding worked\n");
+    }
+  } else { // something went wrong:
     print_manual();
     return EXIT_FAILURE;
   }
@@ -83,9 +85,12 @@ int main(int argc, char *argv[]) {
   fclose(decoded_fd);
   decoded_fd = fopen(decoded_file, "r");
 
-  if (write_statistics(decoded_fd, statistic_fd, verbose)){
-    // TODO: that's a bit sketchy as well.
-  } else {
+  if (decoded_fd && statistic_fd &&
+      write_statistics(decoded_fd, statistic_fd, verbose)) {
+    if (verbose) {
+      printf("\ngenerating statistics worked\n");
+    }
+  } else { // something went wrong:
     print_manual();
     return EXIT_FAILURE;
   }

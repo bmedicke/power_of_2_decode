@@ -4,9 +4,9 @@
 *  MIT License
 **************************************/
 
-#include <stdio.h> // printf, FILE.
+#include <stdio.h> // printf, fprinf, FILE.
 #include <stdbool.h> // booleans.
-#include <stdlib.h> // strtoul.
+#include <stdlib.h> // strtoul, malloc/free.
 #include <string.h> // strlen().
 
 #include "decode.h" // decode_character(), verbose_decode().
@@ -39,7 +39,7 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
   return true; // TODO: add error handling.
 }
 
- _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
+_Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   unsigned long wordcount = 0;
   if (decoded_fd) {
     char word[100];
@@ -63,8 +63,12 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
       }
     }
 
-    for (unsigned long i = 0; i < wordcount; i++) {
-      printf("%s ", words[i]);
+    // print text from memory:
+    if (verbose) {
+      printf("text from memory:\n");
+      for (unsigned long i = 0; i < wordcount; i++) {
+        printf("%s ", words[i]);
+      }
     }
 
     // free memory for the elements of the words array:
@@ -75,5 +79,5 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
     // free memory for the words array itself:
     free(words); // FREE! -- 1
   }
-   return true; // TODO: add error handling.
- }
+  return true; // TODO: add error handling.
+}
