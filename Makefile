@@ -20,3 +20,6 @@ help:
 
 format:
 	astyle -A2 *.c *.h
+
+link:
+	/bin/ln -fns $(CURDIR)/$(BIN) /usr/local/bin
