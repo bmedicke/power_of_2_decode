@@ -4,9 +4,12 @@ OUT_FILE=out
 STAT_FILE=stat
 
 COMPILER=clang
-FLAGS=-Weverything
+# COMPILER=gcc
 
-all: main.c decode.o decode.h helpers.h helpers.o
+FLAGS=-Weverything
+# FLAGS=-Wall
+
+all: main.c decode.h decode.o helpers.h helpers.o
 	$(COMPILER) $(FLAGS) main.c decode.o helpers.o -o $(BIN)
 
 clean:
