@@ -32,3 +32,6 @@ link:
 
 watch:
 	ls *.{c,h} | entr sh -c "clear;make && hr ─ && make run"
+
+doc:
+	doxygen
