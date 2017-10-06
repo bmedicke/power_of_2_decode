@@ -46,7 +46,7 @@ Watches the source files for changes, recompiles and runs the binaries as necess
 
 Watches source and markdown files for changes, regenerates the documentation with Doxygen. Requires [doxygen](http://www.stack.nl/~dimitri/doxygen/) and [entr](https://github.com/clibs/entr).
 
-# useful links
+# useful links and notes
 
 ## C
 
