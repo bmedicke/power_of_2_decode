@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
     rewind(output_fd);
     for (int i = 0; fscanf(output_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
-      words[i] = malloc(strlen(word) + 1); // MALLOC! --2
+      words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
       strcpy(words[i], word);
       if (verbose) {
         printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
