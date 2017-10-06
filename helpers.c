@@ -106,7 +106,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
         kh_value(known_words_ptr, known_words_it) = count;
       }
 
-      // keep track of the highest occuring word:
+      // keep track of the count of the highest occuring word to make sorting easier:
       if (max_wordcount < count) {
         max_wordcount = count;
       }
