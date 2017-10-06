@@ -11,6 +11,11 @@
 
 #include "decode.h" // decode_character(), verbose_decode().
 
+#include "3rdparty/khash.h" // for hashmap.
+
+// create hashmap with str keys and int values:
+KHASH_MAP_INIT_STR(known_words, int)
+
 /** @brief Size of each encoded character in bits */
 #define CHUNKSIZE 16
 
@@ -60,12 +65,12 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   if (!decoded_fd || !statistic_fd) {
     return false;
   } else {
-    unsigned long wordcount = count_words(decoded_fd);
+    unsigned long total_wordcount = count_words(decoded_fd);
     rewind(decoded_fd);
 
-    // create dynamic array with 'wordcount' pointers to strings:
+    // create dynamic array with 'total_wordcount' pointers to strings:
     char **words;
-    words = malloc(wordcount * sizeof(char *)); // MALLOC! -- 1
+    words = malloc(total_wordcount * sizeof(char *)); // MALLOC! -- 1
 
     char word[MAXWORDSIZE];
     for (int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
@@ -77,21 +82,60 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       }
     }
 
-    // print text from memory:
-    if (!verbose) {
-      printf("text from memory:\n");
-      for (unsigned long i = 0; i < wordcount; i++) {
-        printf("%s ", words[i]);
+    int key_is_new;
+    khint_t known_words_it; // hash map iterator.
+    khash_t(known_words) *known_words_ptr; // hash map pointer.
+    known_words_ptr = kh_init(known_words); // initialize hash map.
+
+    for (int i = 0; i < total_wordcount; i++) {
+      int count = 0;
+
+      for (int j = 0; j < total_wordcount; j++) {
+        if (strcmp(words[j], words[i]) == 0) {
+          count++;
+        }
+      }
+
+      // put current word into hashmap (if not already present):
+      known_words_it = kh_put(known_words, known_words_ptr, words[i], &key_is_new);
+
+      // if we encountered the word for the first time update the count:
+      if (key_is_new) {
+        known_words_it = kh_get(known_words, known_words_ptr, words[i]);
+        kh_value(known_words_ptr, known_words_it) = count;
       }
     }
 
+    for (known_words_it = kh_begin(known_words_ptr);
+        known_words_it != kh_end(known_words_ptr);
+        ++known_words_it) {
+      if (kh_exist(known_words_ptr, known_words_it)) {
+        int val;
+        const char* key;
+        val = kh_val(known_words_ptr, known_words_it);
+        key = kh_key(known_words_ptr, known_words_it);
+        fprintf(statistic_fd, "%s: %i\n", key, val);
+        if (verbose) {
+          printf("%s: %i\n", key, val);
+        }
+      }
+    }
+
+    if (verbose) {
+      printf("Number of unique words: %i\n", kh_size(known_words_ptr)); 
+    }
+
     // free memory for the elements of the words array:
-    for (unsigned long i = 0; i < wordcount; i++) {
+    for (unsigned long i = 0; i < total_wordcount; i++) {
       free(words[i]); // FREE! -- 2
     }
 
     // free memory for the words array itself:
     free(words); // FREE! -- 1
+
+    // TODO: free hashmap.
+
   }
   return true; // TODO: add more error handling.
 }
+

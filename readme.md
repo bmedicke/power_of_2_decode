@@ -46,6 +46,12 @@ Watches the source files for changes, recompiles and runs the binaries as necess
 
 Watches source and markdown files for changes, regenerates the documentation with Doxygen. Requires [doxygen](http://www.stack.nl/~dimitri/doxygen/) and [entr](https://github.com/clibs/entr).
 
+# used third party libraries
+
+- [klib](https://github.com/attractivechaos/klib), MIT licensed
+  - specifically `khash.h` for hash maps.
+  - reasoning: single file, independent libraries; used in big projects (e.g. Neovim)
+
 # useful links and notes
 
 ## C
@@ -62,3 +68,4 @@ Watches source and markdown files for changes, regenerates the documentation wit
 
 - [Doxygen usage examples (for C)](http://fnch.users.sourceforge.net/doxygen_c.html)
 - [How to make an introduction page with Doxygen](https://stackoverflow.com/questions/9502426/how-to-make-an-introduction-page-with-doxygen)
+
