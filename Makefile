@@ -3,8 +3,11 @@ IN_FILE=in
 OUT_FILE=out
 STAT_FILE=stat
 
+COMPILER=clang
+FLAGS=-Weverything
+
 all: main.c decode.o decode.h helpers.h helpers.o
-	gcc main.c decode.o helpers.o -o $(BIN)
+	$(COMPILER) $(FLAGS) main.c decode.o helpers.o -o $(BIN)
 
 clean:
 	rm $(BIN) out stat *.o
