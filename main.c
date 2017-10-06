@@ -29,7 +29,6 @@
 /** @brief the main entry point  */
 
 int main(int argc, char *argv[]) {
-  char buffer[CHUNKSIZE];
   _Bool verbose = 0; // verbosity switch.
 
   // filenames:
@@ -78,7 +77,9 @@ int main(int argc, char *argv[]) {
   statistic_fd = fopen(statistic_file, "w"); // write to file.
 
   // TODO: extract this block to a function.
+  // int write_output(input_fd, output_fd, verbose)
   if (input_fd) {
+    char buffer[CHUNKSIZE];
     // read until EOF:
     while (fread(buffer, 1, sizeof buffer, input_fd) > 0) {
       unsigned long encoded_char = strtoul(buffer, NULL, 2);
