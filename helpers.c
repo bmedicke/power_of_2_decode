@@ -119,17 +119,17 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     }
 
     if (verbose) {
-      printf("Number of unique words: %i\n", kh_size(known_words_ptr)); 
+      printf("Number of unique words: %i\n", kh_size(known_words_ptr));
       printf("Highest wordcount: %i\n", max_wordcount);
     }
 
     for (; max_wordcount > 0; max_wordcount--) {
       for (known_words_it = kh_begin(known_words_ptr);
-          known_words_it != kh_end(known_words_ptr);
-          ++known_words_it) {
+           known_words_it != kh_end(known_words_ptr);
+           ++known_words_it) {
         if (kh_exist(known_words_ptr, known_words_it)) {
           int val;
-          const char* key;
+          const char *key;
           val = kh_val(known_words_ptr, known_words_it);
           key = kh_key(known_words_ptr, known_words_it);
           if (max_wordcount == val) {
