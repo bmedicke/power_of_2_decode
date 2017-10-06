@@ -128,6 +128,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
           key = kh_key(known_words_ptr, known_words_it);
           if (max_wordcount == val) {
             fprintf(statistic_fd, "%s: %i\n", key, val);
+            printf("%s: %i\n", key, val);
           }
         }
       }
