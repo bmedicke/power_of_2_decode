@@ -45,6 +45,7 @@ unsigned long count_words(FILE *fd) {
 
 _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
   if (!encoded_fd || !decoded_fd) {
+    printf("Invalid files!\n");
     return false;
   } else {
     char buffer[CHUNKSIZE];
@@ -55,6 +56,10 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
         verbose_decode(encoded_char, buffer);
       }
       char decoded_char = decode_character(encoded_char);
+      if (decoded_char == -1) {
+        printf("Decode failed! Make sure to use a valid input file.\n");
+        return false;
+      }
       fprintf(decoded_fd, "%c", decoded_char);
     }
   }
@@ -63,6 +68,7 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
 
 _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   if (!decoded_fd || !statistic_fd) {
+    printf("Invalid files!\n");
     return false;
   } else {
     unsigned long total_wordcount = count_words(decoded_fd);
