@@ -24,7 +24,7 @@
 /** @brief the main entry point  */
 
 int main(int argc, char *argv[]) {
-  _Bool verbose = 0; // verbosity switch.
+  _Bool verbose = false; // verbosity switch.
 
   // filenames:
   char *encoded_file = NULL;
@@ -43,8 +43,8 @@ int main(int argc, char *argv[]) {
       case 'h': // print the manual:
         print_manual();
         return EXIT_SUCCESS;
-      case 'v': // be more verbose for debugging:
-        verbose = 1;
+      case 'v': // be more verbose:
+        verbose = true;
         break;
       case 'i': // file to read from:
         encoded_file = optarg;
