@@ -34,7 +34,7 @@ _Bool print_statistics(FILE *statistic_fd);
 
 /**
  * @brief returns number of words in a file
- * @warning rewinds the file descriptor!
+ * @warning does not rewind or restore the file descriptor!
  */
 unsigned long count_words(FILE *fd);
 

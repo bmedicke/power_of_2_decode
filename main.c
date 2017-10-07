@@ -25,7 +25,7 @@
 /** @brief the main entry point  */
 
 int main(int argc, char *argv[]) {
-  _Bool verbose = false; // verbosity switch.
+  _Bool verbose = false; // verbose output switch.
 
   // filenames:
   char *encoded_file = NULL;

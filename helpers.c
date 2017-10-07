@@ -12,7 +12,7 @@
 #include "decode.h" // decode_character(), verbose_decode().
 #include "3rdparty/khash.h" // for a hashmap.
 
-// create hashmap with str keys and int values:
+// create hashmap with str as keys and int as values:
 KHASH_MAP_INIT_STR(known_words, int)
 
 /** @brief Size of each encoded character in bits */
