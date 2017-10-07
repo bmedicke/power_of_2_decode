@@ -48,3 +48,4 @@ doc:
 report: $(BIN)
 	valgrind --track-origins=yes --leak-resolution=high --log-file="$(VALGRIND_LOG)" \
 		./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE) 2>&1 > /dev/null
+	sed "1,3d;5,6d" $(VALGRIND_LOG) | cut -d " " -f2- | sponge $(VALGRIND_LOG)

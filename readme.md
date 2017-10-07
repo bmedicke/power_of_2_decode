@@ -47,6 +47,10 @@ Watches the source files for changes, recompiles and runs the binaries as necess
 
 Watches source and markdown files for changes, regenerates the documentation with Doxygen. Requires [doxygen](http://www.stack.nl/~dimitri/doxygen/) and [entr](https://github.com/clibs/entr).
 
+### report
+
+Run [Valgrind](http://valgrind.org) to detect memory leaks. Removes PID from the `report` file to allow proper usage of `git diff`. Requires `sponge` from the [moreutils](https://joeyh.name/code/moreutils/).
+
 # used third party libraries
 
 Everything not written by me is in the `3rdparty` folder.
@@ -66,6 +70,7 @@ Everything not written by me is in the `3rdparty` folder.
 - [implicit conversions](http://localdoc.scusa.lsu.edu/cppreference/en/c/language/conversion.html)
 - [return value of malloc](https://stackoverflow.com/questions/3585847/return-value-of-malloc)
   - __No cast is needed on `malloc()` in C; however, it is in C++!__
+- [Uninitialised value was created by a stack allocation valgrind C](https://stackoverflow.com/questions/24727764/uninitialised-value-was-created-by-a-stack-allocation-valgrind-c)
 
 
 ## doxygen
