@@ -10,7 +10,6 @@
 #include <string.h> // strlen().
 
 #include "decode.h" // decode_character(), verbose_decode().
-
 #include "3rdparty/khash.h" // for a hashmap.
 
 // create hashmap with str keys and int values:
@@ -21,7 +20,6 @@ KHASH_MAP_INIT_STR(known_words, int)
 
 /** @brief Size of longest possible word */
 #define MAXWORDSIZE 100
-// TODO: don't make this constant.
 
 void print_manual() {
   printf( "Required arguemtns:\n"
@@ -63,7 +61,7 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
       fprintf(decoded_fd, "%c", decoded_char);
     }
   }
-  return true; // TODO: add more error handling.
+  return true;
 }
 
 _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
@@ -72,16 +70,15 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     return false;
   } else {
     unsigned long total_wordcount = count_words(decoded_fd);
-    rewind(decoded_fd);
 
     // create dynamic array with 'total_wordcount' pointers to strings:
     char **words;
-    words = malloc(total_wordcount * sizeof(char *)); // MALLOC! -- 1
+    words = malloc(total_wordcount * sizeof(char *));
 
     char word[MAXWORDSIZE];
     for (int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
-      words[i] = malloc(strlen(word) + 1); // MALLOC! -- 2
+      words[i] = malloc(strlen(word) + 1);
       strcpy(words[i], word);
       if (verbose) {
         printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
@@ -91,7 +88,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     int key_is_new;
     khint_t known_words_it; // hash map iterator.
     khash_t(known_words) *known_words_ptr; // hash map pointer.
-    known_words_ptr = kh_init(known_words); // initialize hash map.
+    known_words_ptr = kh_init(known_words); // initialize the hash map.
 
     int max_wordcount = 0;
     for (int i = 0; i < total_wordcount; i++) {
@@ -140,17 +137,18 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       }
     }
 
-    // free memory for the elements of the words array:
+    // free memory of the elements of the words array:
     for (unsigned long i = 0; i < total_wordcount; i++) {
-      free(words[i]); // FREE! -- 2
+      free(words[i]);
     }
 
-    // free memory for the words array itself:
-    free(words); // FREE! -- 1
-
-    // TODO: free hashmap.
+    free(words); // free memory of the words array itself.
 
   }
-  return true; // TODO: add more error handling.
+  return true;
+}
+
+  }
+  return true;
 }
 
