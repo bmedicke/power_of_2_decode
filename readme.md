@@ -91,5 +91,5 @@ Everything not written by me is in the `3rdparty` folder.
 
 ## known limitations
 
-- can't handle words longer than `MAXWORDSIZE`
+- can't handle words longer than `MAXWORDSIZE` defined in `helpers.c`
 - order of words with same count is random (based on hash table)

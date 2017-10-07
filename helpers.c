@@ -137,7 +137,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       max_wordcount--;
     }
 
-    // free memory of the elements of the words array:
+    // free memory of the words array elements:
     for (unsigned long i = 0; i < total_wordcount; i++) {
       free(words[i]);
     }
