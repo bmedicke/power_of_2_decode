@@ -6,7 +6,8 @@ See `decode -h`.
 
 # compiling
 
-Tested with both [clang](https://clang.llvm.org) and [gcc](https://gcc.gnu.org).
+- Tested with both [clang](https://clang.llvm.org) and [gcc](https://gcc.gnu.org).
+- Uses the C99 standard. (mainly for `_Bool`)
 
 ## make commands
 

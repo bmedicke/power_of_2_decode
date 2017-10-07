@@ -7,7 +7,7 @@ SYMLINK_TARGET=/usr/local/bin
 COMPILER=clang
 # COMPILER=gcc
 
-FLAGS=-Weverything
+FLAGS=-Weverything -std=c99
 # FLAGS=-Wall
 
 all: main.c decode.h decode.o helpers.h helpers.o
