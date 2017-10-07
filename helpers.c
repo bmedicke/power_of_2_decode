@@ -143,11 +143,21 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     }
 
     free(words); // free memory of the words array itself.
+    kh_destroy(known_words, known_words_ptr); // free memory of the hash map.
 
   }
   return true;
 }
 
+_Bool print_statistics(FILE *statistic_fd) {
+  if (!statistic_fd) {
+    printf("Error reading statistics file!\n");
+    return false;
+  } else {
+    char c;
+    while ((c = fgetc(statistic_fd)) != EOF) {
+      printf("%c", c);
+    }
   }
   return true;
 }

@@ -86,6 +86,15 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
+  // close statistic_fd and reopen it for reading:
+  fclose(statistic_fd);
+  statistic_fd = fopen(statistic_file, "r");
+
+  if (!print_statistics(statistic_fd)) {
+    print_manual();
+    return EXIT_FAILURE;
+  }
+
   // clean up after ourselves:
   fclose(encoded_fd);
   fclose(decoded_fd);
