@@ -38,7 +38,6 @@ unsigned long count_words(FILE *fd) {
   while (fscanf(fd, "%s", word) == 1) {
     wordcount++;
   }
-  rewind(fd);
   return wordcount;
 }
 
@@ -71,6 +70,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     return false;
   } else {
     unsigned long total_wordcount = count_words(decoded_fd);
+    rewind(decoded_fd);
 
     // create dynamic array with 'total_wordcount' pointers to strings:
     char **words;
@@ -149,13 +149,13 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   return true;
 }
 
-_Bool print_statistics(FILE *statistic_fd) {
-  if (!statistic_fd) {
-    printf("Error reading statistics file!\n");
+_Bool print_file(FILE *fd) {
+  if (!fd) {
+    printf("Error reading file!\n");
     return false;
   } else {
     char c;
-    while ((c = fgetc(statistic_fd)) != EOF) {
+    while ((c = fgetc(fd)) != EOF) {
       printf("%c", c);
     }
   }

@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
   fclose(statistic_fd);
   statistic_fd = fopen(statistic_file, "r");
 
-  if (!print_statistics(statistic_fd)) {
+  if (!print_file(statistic_fd)) {
     print_manual();
     return EXIT_FAILURE;
   }
