@@ -46,5 +46,5 @@ doc:
 	ls *.{h,c,md} Doxyfile | entr doxygen
 
 report: $(BIN)
-	valgrind --track-origins=yes --log-file="$(VALGRIND_LOG)" \
+	valgrind --track-origins=yes --leak-resolution=high --log-file="$(VALGRIND_LOG)" \
 		./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE) 2>&1 > /dev/null
