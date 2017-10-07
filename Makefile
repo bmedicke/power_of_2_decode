@@ -3,6 +3,7 @@ IN_FILE=in
 OUT_FILE=out
 STAT_FILE=stat
 SYMLINK_TARGET=/usr/local/bin
+VALGRIND_LOG=report
 
 COMPILER=clang
 
@@ -19,7 +20,7 @@ all: main.c decode.h decode.o helpers.h helpers.o
 	$(COMPILER) $(FLAGS) main.c decode.o helpers.o -o $(BIN)
 
 clean:
-	rm $(BIN) out stat *.o
+	rm $(BIN) $(OUT_FILE) $(STAT_FILE) *.o
 	rm -rf html
 	rm -rf $(decode).dSYM
 
@@ -44,5 +45,6 @@ watch:
 doc:
 	ls *.{h,c,md} Doxyfile | entr doxygen
 
-check:
-	valgrind --track-origins=yes ./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE) > report 2>&1
+report: $(BIN)
+	valgrind --track-origins=yes --log-file="$(VALGRIND_LOG)" \
+		./$(BIN) -i $(IN_FILE) -o $(OUT_FILE) -s $(STAT_FILE) 2>&1 > /dev/null
