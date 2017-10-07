@@ -38,6 +38,7 @@ unsigned long count_words(FILE *fd) {
   while (fscanf(fd, "%s", word) == 1) {
     wordcount++;
   }
+  rewind(fd);
   return wordcount;
 }
 
