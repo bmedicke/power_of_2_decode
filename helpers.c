@@ -51,7 +51,6 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
     while (fread(buffer, 1, CHUNKSIZE, encoded_fd) > 0) {
       buffer[CHUNKSIZE] = '\0';
       unsigned long encoded_char = strtoul(buffer, NULL, 2);
-      printf("%i\n", encoded_char);
       if (verbose) {
         verbose_decode(encoded_char, buffer);
       }
