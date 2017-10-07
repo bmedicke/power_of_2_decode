@@ -121,21 +121,20 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       printf("Highest wordcount: %i\n", max_wordcount);
     }
 
-    for (; max_wordcount > 0; max_wordcount--) {
+    // write words ordered descendingly by occurrences:
+    while (max_wordcount > 0) {
       for (known_words_it = kh_begin(known_words_ptr);
            known_words_it != kh_end(known_words_ptr);
            ++known_words_it) {
         if (kh_exist(known_words_ptr, known_words_it)) {
-          int val;
-          const char *key;
-          val = kh_val(known_words_ptr, known_words_it);
-          key = kh_key(known_words_ptr, known_words_it);
-          if (max_wordcount == val) {
-            fprintf(statistic_fd, "%s: %i\n", key, val);
-            printf("%s: %i\n", key, val);
+          int count = kh_val(known_words_ptr, known_words_it);
+          const char *word = kh_key(known_words_ptr, known_words_it);
+          if (max_wordcount == count) {
+            fprintf(statistic_fd, "%s: %i\n", word, count);
           }
         }
       }
+      max_wordcount--;
     }
 
     // free memory of the elements of the words array:
