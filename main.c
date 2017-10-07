@@ -17,6 +17,7 @@
 #include <stdio.h> // FILE.
 #include <stdlib.h> // return value macros.
 #include <unistd.h> // getopt.
+#include <getopt.h> // getopt on Linux.
 #include <stdbool.h> // booleans.
 
 // print_manual(), write_decoded_text(), write_statistics():
