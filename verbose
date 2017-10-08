@@ -1819,6 +1819,7 @@ malloc >> [244] IN - 2
 malloc >> [245] VULPUTATE - 9
 malloc >> [246] VELIT - 5
 malloc >> [247] ESSE - 4
+info >> Total wordcount: 248
 info >> Number of unique words: 102
 info >> Highest wordcount: 14
 ET: 14
