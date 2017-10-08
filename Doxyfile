@@ -2,3 +2,4 @@ USE_MDFILE_AS_MAINPAGE = readme.md
 PROJECT_NAME = decode
 PROJECT_BRIEF = "decode characters encoded by 'ASCII * 2^[rand 0-8]'"
 GENERATE_LATEX = NO
+INPUT=source vendor .
