@@ -8,5 +8,5 @@
 make clean
 
 # run make through scan-build to generate a report:
-scan-build --stats -o scan-build-reports make
+scan-build -o scan-build-reports make
 
