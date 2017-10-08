@@ -4,6 +4,10 @@
 *  MIT License
 **************************************/
 
+/**
+ * \file
+ */
+
 #include <stdio.h> // printf, fprinf, FILE.
 #include <stdbool.h> // booleans.
 #include <stdlib.h> // strtoul, malloc/free.
@@ -19,8 +23,21 @@ KHASH_MAP_INIT_STR(known_words, unsigned int)
 /** @brief Size of each encoded character in bits */
 #define CHUNKSIZE 16
 
-/** @brief Size of longest possible word */
+/**
+ * @brief Size of longest possible word
+ * @warning splits words if set too low.
+ * @note Can be set to 1 to count characters
+ */
 #define MAXWORDSIZE 100
+
+/** @brief stringification macro, used to insert macros into strings  */
+#define STR(x) STR2(x)
+
+/**
+ * @brief stringification macro, used by STR() to reliably expand
+ * @warning don't use directly, use STR() instead
+ */
+#define STR2(x) #x
 
 void print_manual(void) {
   printf( "Required arguemtns:\n"

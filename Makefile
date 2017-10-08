@@ -1,3 +1,5 @@
+# tested with clang and gcc
+
 SHELL = /bin/sh
 BIN = decode
 IN_FILE = in
@@ -10,12 +12,16 @@ OBJECTS = helpers.o decode.o
 SOURCE = source
 VENDOR = vendor
 
-# tested with clang and gcc:
-CC ?= clang
+# use clang by default (unless set to something other than cc):
+ifeq ($(notdir $(CC)), cc)
+	CC = clang
+endif
 
-# use -Wall for gcc
-# use -Weverything for clang
-FLAGS = -Weverything # enable all warnings.
+FLAGS = -Wall # warn about all the things gcc knows about.
+
+ifeq ($(notdir $(CC)), clang)
+	FLAGS = -Weverything # clang has even more warnings.
+endif
 
 # set dialect:
 FLAGS += -std=c99

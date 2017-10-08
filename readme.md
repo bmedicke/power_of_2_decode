@@ -102,9 +102,9 @@ add paths to `.ycm_extra_conf.py`.
 
 # error handling
 
-- input file character count not divisible by 16
 - input file characters not exclusively ones and zeroes
 - input file characters outside the defined ASCII range (A-Z + space)
+- input file characters not resolvable
 - any file not writeable (chowned by root)
 
 
