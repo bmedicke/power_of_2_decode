@@ -52,8 +52,8 @@ void print_manual(void) {
 
 unsigned long count_words(FILE *fd) {
   unsigned long wordcount = 0;
-  char word[MAXWORDSIZE];
-  while (fscanf(fd, "%s", word) == 1) {
+  char word[MAXWORDSIZE + 1]; // 1 extra char for \0.
+  while (fscanf(fd, "%" STR(MAXWORDSIZE) "s", word) == 1) {
     wordcount++;
   }
   return wordcount;
@@ -100,13 +100,13 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     char **words;
     words = malloc(total_wordcount * sizeof(char *));
 
-    char word[MAXWORDSIZE];
-    for (unsigned int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
+    char word[MAXWORDSIZE + 1]; // 1 extra char for \0.
+    for (unsigned int i = 0; fscanf(decoded_fd, "%" STR(MAXWORDSIZE) "s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
       words[i] = malloc(strlen(word) + 1);
       strcpy(words[i], word);
       if (verbose) {
-        printf("[%i] %s - %lu\n", i, words[i], strlen(words[i]));
+        printf("malloc >> [%i] %s - %lu\n", i, words[i], strlen(words[i]));
       }
     }
 
@@ -141,8 +141,8 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     }
 
     if (verbose) {
-      printf("Number of unique words: %i\n", kh_size(known_words_ptr));
-      printf("Highest wordcount: %i\n", max_wordcount);
+      printf("info >> Number of unique words: %i\n", kh_size(known_words_ptr));
+      printf("info >> Highest wordcount: %i\n", max_wordcount);
     }
 
     // write words ordered descendingly by occurrences:

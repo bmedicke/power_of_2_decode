@@ -31,7 +31,7 @@ void verbose_decode(unsigned long encoded_char, char *buffer) {
 
     // expecting ASCII: 65(A) - 90(Z) + 32(space):
     if ((test_case >= 65 && test_case <= 90) || test_case == 32) {
-      printf("%.16s\t%lu\t%d\t%c\n",
+      printf("decode >> %.16s\t%lu\t%d\t%c\n",
              buffer, encoded_char, cipher, (char)test_case);
     }
   }
