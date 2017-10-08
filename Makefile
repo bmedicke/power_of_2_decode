@@ -1,16 +1,21 @@
+SHELL = /bin/sh
 BIN = decode
 IN_FILE = in
 OUT_FILE = out
 STAT_FILE = stat
 SYMLINK_TARGET = /usr/local/bin
 VALGRIND_LOG = report
-COMPILER = clang
+ASTYLE_CONFIG = .astylerc
 OBJECTS = helpers.o decode.o
 SOURCE = source
 VENDOR = vendor
 
-# enable all warnings:
-FLAGS = -Weverything
+# tested with clang and gcc:
+COMPILER = clang
+
+# use -Wall for gcc
+# use -Weverything for clang
+FLAGS = -Weverything # enable all warnings.
 
 # set dialect:
 FLAGS += -std=c99
@@ -45,7 +50,7 @@ help:
 	./$(BIN) -h
 
 format:
-	astyle -A2 $(SOURCE)/*.{c,h} && git diff
+	astyle --options=$(ASTYLE_CONFIG) $(SOURCE)/*.{c,h} && git diff
 
 link:
 	/bin/ln -ns $(CURDIR)/$(BIN) $(SYMLINK_TARGET)

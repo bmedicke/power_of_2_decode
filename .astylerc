@@ -1,0 +1,10 @@
+--style=java
+--indent=spaces=2
+--indent-switches
+--pad-oper
+--pad-header
+--align-pointer=name
+--align-reference=name
+--max-code-length=79
+--suffix=none
+--quiet
