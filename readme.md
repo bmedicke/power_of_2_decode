@@ -4,57 +4,58 @@
 
 See `decode -h`.
 
-# compiling
+# notes on compiling
 
-- Tested with both [clang](https://clang.llvm.org) and [gcc](https://gcc.gnu.org).
+- Tested with [clang](https://clang.llvm.org) and [gcc](https://gcc.gnu.org).
+- Tested on macos 10.13 and Arch Linux 4.13.
 - Uses the C99 standard (for `_Bool`).
 - Edit the `Makefile` to change settings.
 
 ## make commands
 
-### all
+### make all
 
 Compile everything that's out of date. The default compiler is `clang`.
 
-### clean
+### make clean
 
 Remove all binaries, object files and other output files.
 
-### run
+### make run
 
 Runs the command with the default settings.
 
-### verbose
+### make verbose
 
 Runs the command with default settings plus enable verbose output.
 
-### help
+### make help
 
 Show the help text.
 
-### format
+### make format
 
 Format all source files and shows changes via a git diff to make individual decisions. Requires [astyle](http://astyle.sourceforge.net) and [git](http://git.com).
 
-### link
+### make link
 
 Create a symlink pointing to the binary. Default target is `/usr/local/bin`.
 
-### watch
+### make watch
 
 Watches the source files for changes, recompiles and runs the binaries as necessary. Requires [hr](https://github.com/LuRsT/hr) and [entr](https://github.com/clibs/entr).
 
-### doc
+### make doc
 
 Watches source and markdown files for changes, regenerates the documentation with Doxygen. Requires [doxygen](http://www.stack.nl/~dimitri/doxygen/) and [entr](https://github.com/clibs/entr).
 
-### report
+### make report
 
-Run [Valgrind](http://valgrind.org) to detect memory leaks. Removes PID from the `report` file to allow proper usage of `git diff`. Requires `sponge` from the [moreutils](https://joeyh.name/code/moreutils/).
+Run to detect memory leaks. Removes PID from the `report` file to allow proper usage of `git diff`. Requires [Valgrind](http://valgrind.org) and `sponge` from the [moreutils](https://joeyh.name/code/moreutils/).
 
 # used third party libraries
 
-Everything not written by me is in the `3rdparty` folder.
+All code not written by me is in the `vendor` folder.
 
 - [klib](https://github.com/attractivechaos/klib), MIT licensed
   - specifically `khash.h` for a hash map storing the count of the occurrences for the decoded words.
@@ -72,6 +73,18 @@ Everything not written by me is in the `3rdparty` folder.
 - [return value of malloc](https://stackoverflow.com/questions/3585847/return-value-of-malloc)
   - __No cast is needed on `malloc()` in C; however, it is in C++!__
 - [Uninitialised value was created by a stack allocation valgrind C](https://stackoverflow.com/questions/24727764/uninitialised-value-was-created-by-a-stack-allocation-valgrind-c)
+
+## IDE
+
+get header search path for clang:
+
+```sh
+echo | clang -v -E -x c -
+```
+add paths to `.ycm_extra_conf.py`.
+
+- [YouCompleteMe, header files](https://stackoverflow.com/questions/24438211/youcompleteme-header-files)
+- [macOS c std lib completion and brew python problem](https://github.com/Valloric/YouCompleteMe/issues/2268)
 
 
 ## doxygen
@@ -98,4 +111,4 @@ Everything not written by me is in the `3rdparty` folder.
 ## known limitations
 
 - can't handle words longer than `MAXWORDSIZE` defined in `helpers.c`
-- order of words with same count is random (based on hash table)
+- order of words with same count is semi-random (based on hash table)

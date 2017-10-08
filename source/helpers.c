@@ -9,11 +9,12 @@
 #include <stdlib.h> // strtoul, malloc/free.
 #include <string.h> // strlen().
 
+#include "helpers.h"
 #include "decode.h" // decode_character(), verbose_decode().
-#include "3rdparty/khash.h" // for a hashmap.
+#include "khash.h" // for a hashmap.
 
 // create hashmap with str as keys and int as values:
-KHASH_MAP_INIT_STR(known_words, int)
+KHASH_MAP_INIT_STR(known_words, unsigned int)
 
 /** @brief Size of each encoded character in bits */
 #define CHUNKSIZE 16
@@ -21,7 +22,7 @@ KHASH_MAP_INIT_STR(known_words, int)
 /** @brief Size of longest possible word */
 #define MAXWORDSIZE 100
 
-void print_manual() {
+void print_manual(void) {
   printf( "Required arguemtns:\n"
           "\t-i <encoded input file>\n"
           "\t-o <decoded output file for decoded string>\n"
@@ -78,7 +79,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     words = malloc(total_wordcount * sizeof(char *));
 
     char word[MAXWORDSIZE];
-    for (int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
+    for (unsigned int i = 0; fscanf(decoded_fd, "%s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
       words[i] = malloc(strlen(word) + 1);
       strcpy(words[i], word);
@@ -92,11 +93,11 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     khash_t(known_words) *known_words_ptr; // hash map pointer.
     known_words_ptr = kh_init(known_words); // initialize the hash map.
 
-    int max_wordcount = 0;
-    for (int i = 0; i < total_wordcount; i++) {
-      int count = 0;
+    unsigned int max_wordcount = 0;
+    for (unsigned int i = 0; i < total_wordcount; i++) {
+      unsigned int count = 0;
 
-      for (int j = 0; j < total_wordcount; j++) {
+      for (unsigned int j = 0; j < total_wordcount; j++) {
         if (strcmp(words[j], words[i]) == 0) {
           count++;
         }
@@ -128,10 +129,10 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
            known_words_it != kh_end(known_words_ptr);
            ++known_words_it) {
         if (kh_exist(known_words_ptr, known_words_it)) {
-          int count = kh_val(known_words_ptr, known_words_it);
-          const char *word = kh_key(known_words_ptr, known_words_it);
+          unsigned int count = kh_val(known_words_ptr, known_words_it);
+          const char *current_word = kh_key(known_words_ptr, known_words_it);
           if (max_wordcount == count) {
-            fprintf(statistic_fd, "%s: %i\n", word, count);
+            fprintf(statistic_fd, "%s: %i\n", current_word, count);
           }
         }
       }
@@ -156,7 +157,7 @@ _Bool print_file(FILE *fd) {
     return false;
   } else {
     char c;
-    while ((c = fgetc(fd)) != EOF) {
+    while ((c = (char)fgetc(fd)) != EOF) {
       printf("%c", c);
     }
   }
