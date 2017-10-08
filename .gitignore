@@ -3,3 +3,4 @@ decode
 latex
 html
 *.dSYM
+scan-build-reports
