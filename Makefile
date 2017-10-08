@@ -4,14 +4,14 @@ IN_FILE = in
 OUT_FILE = out
 STAT_FILE = stat
 SYMLINK_TARGET = /usr/local/bin
-VALGRIND_LOG = report
+VALGRIND_LOG = valgrind_report
 ASTYLE_CONFIG = .astylerc
 OBJECTS = helpers.o decode.o
 SOURCE = source
 VENDOR = vendor
 
 # tested with clang and gcc:
-COMPILER = clang
+CC ?= clang
 
 # use -Wall for gcc
 # use -Weverything for clang
@@ -30,10 +30,10 @@ FLAGS += -isystem $(VENDOR)
 FLAGS += -I source
 
 all: $(SOURCE)/main.c $(OBJECTS)
-	$(COMPILER) $(FLAGS) $(OBJECTS) $(SOURCE)/main.c -o $(BIN)
+	$(CC) $(FLAGS) $(OBJECTS) $(SOURCE)/main.c -o $(BIN)
 
 %.o: $(SOURCE)/%.c
-	$(COMPILER) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c $<
 
 clean:
 	rm -rf html
