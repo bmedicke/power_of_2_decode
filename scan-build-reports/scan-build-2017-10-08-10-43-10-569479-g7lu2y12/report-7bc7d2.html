@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<title>/Users/ben/Documents/projects/expert-task/source/helpers.c</title>
+<style type="text/css">
+ body { color:#000000; background-color:#ffffff }
+ body { font-family:Helvetica, sans-serif; font-size:10pt }
+ h1 { font-size:14pt }
+ .code { border-collapse:collapse; width:100%; }
+ .code { font-family: "Monospace", monospace; font-size:10pt }
+ .code { line-height: 1.2em }
+ .comment { color: green; font-style: oblique }
+ .keyword { color: blue }
+ .string_literal { color: red }
+ .directive { color: darkmagenta }
+ .expansion { display: none; }
+ .macro:hover .expansion { display: block; border: 2px solid #FF0000; padding: 2px; background-color:#FFF0F0; font-weight: normal;   -webkit-border-radius:5px;  -webkit-box-shadow:1px 1px 7px #000;   border-radius:5px;  box-shadow:1px 1px 7px #000; position: absolute; top: -1em; left:10em; z-index: 1 } 
+ .macro { color: darkmagenta; background-color:LemonChiffon; position: relative }
+ .num { width:2.5em; padding-right:2ex; background-color:#eeeeee }
+ .num { text-align:right; font-size:8pt }
+ .num { color:#444444 }
+ .line { padding-left: 1ex; border-left: 3px solid #ccc }
+ .line { white-space: pre }
+ .msg { -webkit-box-shadow:1px 1px 7px #000 }
+ .msg { box-shadow:1px 1px 7px #000 }
+ .msg { -webkit-border-radius:5px }
+ .msg { border-radius:5px }
+ .msg { font-family:Helvetica, sans-serif; font-size:8pt }
+ .msg { float:left }
+ .msg { padding:0.25em 1ex 0.25em 1ex }
+ .msg { margin-top:10px; margin-bottom:10px }
+ .msg { font-weight:bold }
+ .msg { max-width:60em; word-wrap: break-word; white-space: pre-wrap }
+ .msgT { padding:0x; spacing:0x }
+ .msgEvent { background-color:#fff8b4; color:#000000 }
+ .msgControl { background-color:#bbbbbb; color:#000000 }
+ .msgNote { background-color:#ddeeff; color:#000000 }
+ .mrange { background-color:#dfddf3 }
+ .mrange { border-bottom:1px solid #6F9DBE }
+ .PathIndex { font-weight: bold; padding:0px 5px; margin-right:5px; }
+ .PathIndex { -webkit-border-radius:8px }
+ .PathIndex { border-radius:8px }
+ .PathIndexEvent { background-color:#bfba87 }
+ .PathIndexControl { background-color:#8c8c8c }
+ .PathNav a { text-decoration:none; font-size: larger }
+ .CodeInsertionHint { font-weight: bold; background-color: #10dd10 }
+ .CodeRemovalHint { background-color:#de1010 }
+ .CodeRemovalHint { border-bottom:1px solid #6F9DBE }
+ table.simpletable {
+   padding: 5px;
+   font-size:12pt;
+   margin:20px;
+   border-collapse: collapse; border-spacing: 0px;
+ }
+ td.rowname {
+   text-align: right;
+   vertical-align: top;
+   font-weight: bold;
+   color:#444444;
+   padding-right:2ex;
+ }
+</style>
+</head>
+<body>
+<!-- BUGDESC print_manual -> Total CFGBlocks: 3 | Unreachable CFGBlocks: 0 | Exhausted Block: no | Empty WorkList: yes -->
+
+<!-- BUGTYPE Analyzer Statistics -->
+
+<!-- BUGCATEGORY Internal Statistics -->
+
+<!-- BUGFILE /Users/ben/Documents/projects/expert-task/source/helpers.c -->
+
+<!-- FILENAME helpers.c -->
+
+<!-- FUNCTIONNAME print_manual -->
+
+<!-- ISSUEHASHCONTENTOFLINEINCONTEXT 382b91593f31682246090650026881c9 -->
+
+<!-- BUGLINE 25 -->
+
+<!-- BUGCOLUMN 6 -->
+
+<!-- BUGPATHLENGTH 1 -->
+
+<!-- BUGMETAEND -->
+<!-- REPORTHEADER -->
+<h3>Bug Summary</h3>
+<table class="simpletable">
+<tr><td class="rowname">File:</td><td>/Users/ben/Documents/projects/expert-task/source/helpers.c</td></tr>
+<tr><td class="rowname">Warning:</td><td><a href="#EndPath">line 25, column 6</a><br />print_manual -> Total CFGBlocks: 3 | Unreachable CFGBlocks: 0 | Exhausted Block: no | Empty WorkList: yes</td></tr>
+</table>
+<!-- REPORTSUMMARYEXTRA -->
+<h3>Annotated Source Code</h3>
+<table class="code">
+<tr><td class="num" id="LN1">1</td><td class="line"><span class='comment'>/*************************************</span></td></tr>
+<tr><td class="num" id="LN2">2</td><td class="line"><span class='comment'>*  Copyright (C) Benjamin Medicke</span></td></tr>
+<tr><td class="num" id="LN3">3</td><td class="line"><span class='comment'>*  All rights reserved.</span></td></tr>
+<tr><td class="num" id="LN4">4</td><td class="line"><span class='comment'>*  MIT License</span></td></tr>
+<tr><td class="num" id="LN5">5</td><td class="line"><span class='comment'>**************************************/</span></td></tr>
+<tr><td class="num" id="LN6">6</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN7">7</td><td class="line"><span class='directive'>#include &lt;stdio.h&gt; // printf, fprinf, FILE.</span></td></tr>
+<tr><td class="num" id="LN8">8</td><td class="line"><span class='directive'>#include &lt;stdbool.h&gt; // booleans.</span></td></tr>
+<tr><td class="num" id="LN9">9</td><td class="line"><span class='directive'>#include &lt;stdlib.h&gt; // strtoul, malloc/free.</span></td></tr>
+<tr><td class="num" id="LN10">10</td><td class="line"><span class='directive'>#include &lt;string.h&gt; // strlen().</span></td></tr>
+<tr><td class="num" id="LN11">11</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN12">12</td><td class="line"><span class='directive'>#include "helpers.h"</span></td></tr>
+<tr><td class="num" id="LN13">13</td><td class="line"><span class='directive'>#include "decode.h" // decode_character(), verbose_decode().</span></td></tr>
+<tr><td class="num" id="LN14">14</td><td class="line"><span class='directive'>#include "khash.h" // for a hashmap.</span></td></tr>
+<tr><td class="num" id="LN15">15</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN16">16</td><td class="line"><span class='comment'>// create hashmap with str as keys and int as values:</span></td></tr>
+<tr><td class="num" id="LN17">17</td><td class="line"><span class='macro'>KHASH_MAP_INIT_STR(known_words, <span class='keyword'>unsigned</span> <span class='keyword'>int</span>)<span class='expansion'>typedef struct kh_known_words_s { khint_t n_buckets, size, n_occupied<br>, upper_bound; khint32_t *flags; kh_cstr_t *keys; unsigned int<br> *vals; } kh_known_words_t; static inline __attribute__ ((__unused__<br>)) kh_known_words_t *kh_init_known_words(void) { return (kh_known_words_t<br>*)calloc(1,sizeof(kh_known_words_t)); } static inline __attribute__<br> ((__unused__)) void kh_destroy_known_words(kh_known_words_t *<br>h) { if (h) { free((void *)h-&gt;keys); free(h-&gt;flags); free<br>((void *)h-&gt;vals); free(h); } } static inline __attribute__<br> ((__unused__)) void kh_clear_known_words(kh_known_words_t *h<br>) { if (h &amp;&amp; h-&gt;flags) { __builtin___memset_chk (h<br>-&gt;flags, 0xaa, ((h-&gt;n_buckets) &lt; 16? 1 : (h-&gt;n_buckets<br>)&gt;&gt;4) * sizeof(khint32_t), __builtin_object_size (h-&gt;<br>flags, 0)); h-&gt;size = h-&gt;n_occupied = 0; } } static inline<br> __attribute__ ((__unused__)) khint_t kh_get_known_words(const<br> kh_known_words_t *h, kh_cstr_t key) { if (h-&gt;n_buckets) {<br> khint_t k, i, last, mask, step = 0; mask = h-&gt;n_buckets -<br> 1; k = __ac_X31_hash_string(key); i = k &amp; mask; last = i<br>; while (!((h-&gt;flags[i&gt;&gt;4]&gt;&gt;((i&amp;0xfU)&lt;&lt;<br>1))&amp;2) &amp;&amp; (((h-&gt;flags[i&gt;&gt;4]&gt;&gt;((i&amp;<br>0xfU)&lt;&lt;1))&amp;1) || !(strcmp(h-&gt;keys[i], key) == 0)<br>)) { i = (i + (++step)) &amp; mask; if (i == last) return h-&gt;<br>n_buckets; } return ((h-&gt;flags[i&gt;&gt;4]&gt;&gt;((i&amp;<br>0xfU)&lt;&lt;1))&amp;3)? h-&gt;n_buckets : i; } else return 0<br>; } static inline __attribute__ ((__unused__)) int kh_resize_known_words<br>(kh_known_words_t *h, khint_t new_n_buckets) { khint32_t *new_flags<br> = 0; khint_t j = 1; { (--(new_n_buckets), (new_n_buckets)|=(<br>new_n_buckets)&gt;&gt;1, (new_n_buckets)|=(new_n_buckets)&gt;&gt;<br>2, (new_n_buckets)|=(new_n_buckets)&gt;&gt;4, (new_n_buckets)<br>|=(new_n_buckets)&gt;&gt;8, (new_n_buckets)|=(new_n_buckets)&gt;&gt;<br>16, ++(new_n_buckets)); if (new_n_buckets &lt; 4) new_n_buckets<br> = 4; if (h-&gt;size &gt;= (khint_t)(new_n_buckets * __ac_HASH_UPPER<br> + 0.5)) j = 0; else { new_flags = (khint32_t*)malloc(((new_n_buckets<br>) &lt; 16? 1 : (new_n_buckets)&gt;&gt;4) * sizeof(khint32_t))<br>; if (!new_flags) return -1; __builtin___memset_chk (new_flags<br>, 0xaa, ((new_n_buckets) &lt; 16? 1 : (new_n_buckets)&gt;&gt;<br>4) * sizeof(khint32_t), __builtin_object_size (new_flags, 0))<br>; if (h-&gt;n_buckets &lt; new_n_buckets) { kh_cstr_t *new_keys<br> = (kh_cstr_t*)realloc((void *)h-&gt;keys,new_n_buckets * sizeof<br>(kh_cstr_t)); if (!new_keys) { free(new_flags); return -1; } h<br>-&gt;keys = new_keys; if (1) { unsigned int *new_vals = (unsigned<br> int*)realloc((void *)h-&gt;vals,new_n_buckets * sizeof(unsigned<br> int)); if (!new_vals) { free(new_flags); return -1; } h-&gt;<br>vals = new_vals; } } } } if (j) { for (j = 0; j != h-&gt;n_buckets<br>; ++j) { if (((h-&gt;flags[j&gt;&gt;4]&gt;&gt;((j&amp;0xfU)&lt;&lt;<br>1))&amp;3) == 0) { kh_cstr_t key = h-&gt;keys[j]; unsigned int<br> val; khint_t new_mask; new_mask = new_n_buckets - 1; if (1) val<br> = h-&gt;vals[j]; (h-&gt;flags[j&gt;&gt;4]|=1ul&lt;&lt;((j&amp;<br>0xfU)&lt;&lt;1)); while (1) { khint_t k, i, step = 0; k = __ac_X31_hash_string<br>(key); i = k &amp; new_mask; while (!((new_flags[i&gt;&gt;4]&gt;&gt;<br>((i&amp;0xfU)&lt;&lt;1))&amp;2)) i = (i + (++step)) &amp; new_mask<br>; (new_flags[i&gt;&gt;4]&amp;=~(2ul&lt;&lt;((i&amp;0xfU)&lt;&lt;<br>1))); if (i &lt; h-&gt;n_buckets &amp;&amp; ((h-&gt;flags[i&gt;&gt;<br>4]&gt;&gt;((i&amp;0xfU)&lt;&lt;1))&amp;3) == 0) { { kh_cstr_t<br> tmp = h-&gt;keys[i]; h-&gt;keys[i] = key; key = tmp; } if (1<br>) { unsigned int tmp = h-&gt;vals[i]; h-&gt;vals[i] = val; val<br> = tmp; } (h-&gt;flags[i&gt;&gt;4]|=1ul&lt;&lt;((i&amp;0xfU)&lt;&lt;<br>1)); } else { h-&gt;keys[i] = key; if (1) h-&gt;vals[i] = val<br>; break; } } } } if (h-&gt;n_buckets &gt; new_n_buckets) { h-&gt;<br>keys = (kh_cstr_t*)realloc((void *)h-&gt;keys,new_n_buckets *<br> sizeof(kh_cstr_t)); if (1) h-&gt;vals = (unsigned int*)realloc<br>((void *)h-&gt;vals,new_n_buckets * sizeof(unsigned int)); } free<br>(h-&gt;flags); h-&gt;flags = new_flags; h-&gt;n_buckets = new_n_buckets<br>; h-&gt;n_occupied = h-&gt;size; h-&gt;upper_bound = (khint_t<br>)(h-&gt;n_buckets * __ac_HASH_UPPER + 0.5); } return 0; } static<br> inline __attribute__ ((__unused__)) khint_t kh_put_known_words<br>(kh_known_words_t *h, kh_cstr_t key, int *ret) { khint_t x; if<br> (h-&gt;n_occupied &gt;= h-&gt;upper_bound) { if (h-&gt;n_buckets<br> &gt; (h-&gt;size&lt;&lt;1)) { if (kh_resize_known_words(h, h<br>-&gt;n_buckets - 1) &lt; 0) { *ret = -1; return h-&gt;n_buckets<br>; } } else if (kh_resize_known_words(h, h-&gt;n_buckets + 1) &lt;<br> 0) { *ret = -1; return h-&gt;n_buckets; } } { khint_t k, i, site<br>, last, mask = h-&gt;n_buckets - 1, step = 0; x = site = h-&gt;<br>n_buckets; k = __ac_X31_hash_string(key); i = k &amp; mask; if<br> (((h-&gt;flags[i&gt;&gt;4]&gt;&gt;((i&amp;0xfU)&lt;&lt;1))&amp;<br>2)) x = i; else { last = i; while (!((h-&gt;flags[i&gt;&gt;4]<br>&gt;&gt;((i&amp;0xfU)&lt;&lt;1))&amp;2) &amp;&amp; (((h-&gt;flags<br>[i&gt;&gt;4]&gt;&gt;((i&amp;0xfU)&lt;&lt;1))&amp;1) || !(strcmp<br>(h-&gt;keys[i], key) == 0))) { if (((h-&gt;flags[i&gt;&gt;4]&gt;&gt;<br>((i&amp;0xfU)&lt;&lt;1))&amp;1)) site = i; i = (i + (++step))<br> &amp; mask; if (i == last) { x = site; break; } } if (x == h<br>-&gt;n_buckets) { if (((h-&gt;flags[i&gt;&gt;4]&gt;&gt;((i&amp;<br>0xfU)&lt;&lt;1))&amp;2) &amp;&amp; site != h-&gt;n_buckets) x<br> = site; else x = i; } } } if (((h-&gt;flags[x&gt;&gt;4]&gt;&gt;<br>((x&amp;0xfU)&lt;&lt;1))&amp;2)) { h-&gt;keys[x] = key; (h-&gt;<br>flags[x&gt;&gt;4]&amp;=~(3ul&lt;&lt;((x&amp;0xfU)&lt;&lt;1)))<br>; ++h-&gt;size; ++h-&gt;n_occupied; *ret = 1; } else if (((h-&gt;<br>flags[x&gt;&gt;4]&gt;&gt;((x&amp;0xfU)&lt;&lt;1))&amp;1)) { h<br>-&gt;keys[x] = key; (h-&gt;flags[x&gt;&gt;4]&amp;=~(3ul&lt;&lt;<br>((x&amp;0xfU)&lt;&lt;1))); ++h-&gt;size; *ret = 2; } else *ret<br> = 0; return x; } static inline __attribute__ ((__unused__)) void<br> kh_del_known_words(kh_known_words_t *h, khint_t x) { if (x !=<br> h-&gt;n_buckets &amp;&amp; !((h-&gt;flags[x&gt;&gt;4]&gt;&gt;<br>((x&amp;0xfU)&lt;&lt;1))&amp;3)) { (h-&gt;flags[x&gt;&gt;4]|=<br>1ul&lt;&lt;((x&amp;0xfU)&lt;&lt;1)); --h-&gt;size; } }</span></span></td></tr>
+<tr><td class="num" id="LN18">18</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN19">19</td><td class="line"><span class='comment'>/** @brief Size of each encoded character in bits */</span></td></tr>
+<tr><td class="num" id="LN20">20</td><td class="line"><span class='directive'>#define <span class='macro'>CHUNKSIZE<span class='expansion'>16</span></span> 16</span></td></tr>
+<tr><td class="num" id="LN21">21</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN22">22</td><td class="line"><span class='comment'>/** @brief Size of longest possible word */</span></td></tr>
+<tr><td class="num" id="LN23">23</td><td class="line"><span class='directive'>#define <span class='macro'>MAXWORDSIZE<span class='expansion'>100</span></span> 100</span></td></tr>
+<tr><td class="num" id="LN24">24</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN25">25</td><td class="line"><span class='keyword'>void</span> print_manual(<span class='keyword'>void</span>) <span class="mrange">{</td></tr></span>
+<tr><td class="num"></td><td class="line"><div id="EndPath" class="msg msgEvent" style="margin-left:6ex">print_manual -&gt; Total CFGBlocks: 3 | Unreachable CFGBlocks: 0 | Exhausted Block: no | Empty WorkList: yes</div></td></tr>
+<tr><td class="num" id="LN26">26</td><td class="line">  <span class="mrange">printf( <span class='string_literal'>"Required arguemtns:\n"</span></td></tr></span>
+<tr><td class="num" id="LN27">27</td><td class="line">          <span class="mrange"><span class='string_literal'>"\t-i &lt;encoded input file&gt;\n"</span></td></tr></span>
+<tr><td class="num" id="LN28">28</td><td class="line">          <span class="mrange"><span class='string_literal'>"\t-o &lt;decoded output file for decoded string&gt;\n"</span></td></tr></span>
+<tr><td class="num" id="LN29">29</td><td class="line">          <span class="mrange"><span class='string_literal'>"\t-s &lt;file for statistics&gt;\n"</span></td></tr></span>
+<tr><td class="num" id="LN30">30</td><td class="line">          <span class="mrange"><span class='string_literal'>"Optional:\n"</span></td></tr></span>
+<tr><td class="num" id="LN31">31</td><td class="line">          <span class="mrange"><span class='string_literal'>"\t-v verbose debug output\n"</span></td></tr></span>
+<tr><td class="num" id="LN32">32</td><td class="line">          <span class="mrange"><span class='string_literal'>"You can also use -h to see this message.\n"</span></td></tr></span>
+<tr><td class="num" id="LN33">33</td><td class="line">        <span class="mrange">);</td></tr></span>
+<tr><td class="num" id="LN34">34</td><td class="line"><span class="mrange">}</td></tr></span>
+<tr><td class="num" id="LN35">35</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN36">36</td><td class="line"><span class='keyword'>unsigned</span> <span class='keyword'>long</span> count_words(FILE *fd) {</td></tr>
+<tr><td class="num" id="LN37">37</td><td class="line">  <span class='keyword'>unsigned</span> <span class='keyword'>long</span> wordcount = 0;</td></tr>
+<tr><td class="num" id="LN38">38</td><td class="line">  <span class='keyword'>char</span> word[<span class='macro'>MAXWORDSIZE<span class='expansion'>100</span></span>];</td></tr>
+<tr><td class="num" id="LN39">39</td><td class="line">  <span class='keyword'>while</span> (fscanf(fd, <span class='string_literal'>"%s"</span>, word) == 1) {</td></tr>
+<tr><td class="num" id="LN40">40</td><td class="line">    wordcount++;</td></tr>
+<tr><td class="num" id="LN41">41</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN42">42</td><td class="line">  <span class='keyword'>return</span> wordcount;</td></tr>
+<tr><td class="num" id="LN43">43</td><td class="line">}</td></tr>
+<tr><td class="num" id="LN44">44</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN45">45</td><td class="line"><span class='keyword'>_Bool</span> write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, <span class='keyword'>_Bool</span> verbose) {</td></tr>
+<tr><td class="num" id="LN46">46</td><td class="line">  <span class='keyword'>if</span> (!encoded_fd || !decoded_fd) {</td></tr>
+<tr><td class="num" id="LN47">47</td><td class="line">    printf(<span class='string_literal'>"Invalid files!\n"</span>);</td></tr>
+<tr><td class="num" id="LN48">48</td><td class="line">    <span class='keyword'>return</span> <span class='macro'>false<span class='expansion'>0</span></span>;</td></tr>
+<tr><td class="num" id="LN49">49</td><td class="line">  } <span class='keyword'>else</span> {</td></tr>
+<tr><td class="num" id="LN50">50</td><td class="line">    <span class='keyword'>char</span> buffer[<span class='macro'>CHUNKSIZE<span class='expansion'>16</span></span> + 1]; <span class='comment'>// CHUNK + NUL.</span></td></tr>
+<tr><td class="num" id="LN51">51</td><td class="line">    <span class='comment'>// read until EOF:</span></td></tr>
+<tr><td class="num" id="LN52">52</td><td class="line">    <span class='keyword'>while</span> (fread(buffer, 1, <span class='macro'>CHUNKSIZE<span class='expansion'>16</span></span>, encoded_fd) &gt; 0) {</td></tr>
+<tr><td class="num" id="LN53">53</td><td class="line">      buffer[<span class='macro'>CHUNKSIZE<span class='expansion'>16</span></span>] = '\0';</td></tr>
+<tr><td class="num" id="LN54">54</td><td class="line">      <span class='keyword'>unsigned</span> <span class='keyword'>long</span> encoded_char = strtoul(buffer, <span class='macro'>NULL<span class='expansion'>((void *)0)</span></span>, 2);</td></tr>
+<tr><td class="num" id="LN55">55</td><td class="line">      <span class='keyword'>if</span> (verbose) {</td></tr>
+<tr><td class="num" id="LN56">56</td><td class="line">        verbose_decode(encoded_char, buffer);</td></tr>
+<tr><td class="num" id="LN57">57</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN58">58</td><td class="line">      <span class='keyword'>char</span> decoded_char = decode_character(encoded_char);</td></tr>
+<tr><td class="num" id="LN59">59</td><td class="line">      <span class='keyword'>if</span> (decoded_char == -1) {</td></tr>
+<tr><td class="num" id="LN60">60</td><td class="line">        printf(<span class='string_literal'>"Decode failed! Make sure to use a valid input file.\n"</span>);</td></tr>
+<tr><td class="num" id="LN61">61</td><td class="line">        <span class='keyword'>return</span> <span class='macro'>false<span class='expansion'>0</span></span>;</td></tr>
+<tr><td class="num" id="LN62">62</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN63">63</td><td class="line">      fprintf(decoded_fd, <span class='string_literal'>"%c"</span>, decoded_char);</td></tr>
+<tr><td class="num" id="LN64">64</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN65">65</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN66">66</td><td class="line">  <span class='keyword'>return</span> <span class='macro'>true<span class='expansion'>1</span></span>;</td></tr>
+<tr><td class="num" id="LN67">67</td><td class="line">}</td></tr>
+<tr><td class="num" id="LN68">68</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN69">69</td><td class="line"><span class='keyword'>_Bool</span> write_statistics(FILE *decoded_fd, FILE *statistic_fd, <span class='keyword'>_Bool</span> verbose) {</td></tr>
+<tr><td class="num" id="LN70">70</td><td class="line">  <span class='keyword'>if</span> (!decoded_fd || !statistic_fd) {</td></tr>
+<tr><td class="num" id="LN71">71</td><td class="line">    printf(<span class='string_literal'>"Invalid files!\n"</span>);</td></tr>
+<tr><td class="num" id="LN72">72</td><td class="line">    <span class='keyword'>return</span> <span class='macro'>false<span class='expansion'>0</span></span>;</td></tr>
+<tr><td class="num" id="LN73">73</td><td class="line">  } <span class='keyword'>else</span> {</td></tr>
+<tr><td class="num" id="LN74">74</td><td class="line">    <span class='keyword'>unsigned</span> <span class='keyword'>long</span> total_wordcount = count_words(decoded_fd);</td></tr>
+<tr><td class="num" id="LN75">75</td><td class="line">    rewind(decoded_fd);</td></tr>
+<tr><td class="num" id="LN76">76</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN77">77</td><td class="line">    <span class='comment'>// create dynamic array with 'total_wordcount' pointers to strings:</span></td></tr>
+<tr><td class="num" id="LN78">78</td><td class="line">    <span class='keyword'>char</span> **words;</td></tr>
+<tr><td class="num" id="LN79">79</td><td class="line">    words = malloc(total_wordcount * <span class='keyword'>sizeof</span>(<span class='keyword'>char</span> *));</td></tr>
+<tr><td class="num" id="LN80">80</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN81">81</td><td class="line">    <span class='keyword'>char</span> word[<span class='macro'>MAXWORDSIZE<span class='expansion'>100</span></span>];</td></tr>
+<tr><td class="num" id="LN82">82</td><td class="line">    <span class='keyword'>for</span> (<span class='keyword'>unsigned</span> <span class='keyword'>int</span> i = 0; fscanf(decoded_fd, <span class='string_literal'>"%s"</span>, word) == 1; i++) {</td></tr>
+<tr><td class="num" id="LN83">83</td><td class="line">      <span class='comment'>// create dynamic char array to hold the current word:</span></td></tr>
+<tr><td class="num" id="LN84">84</td><td class="line">      words[i] = malloc(strlen(word) + 1);</td></tr>
+<tr><td class="num" id="LN85">85</td><td class="line">      <span class='macro'>strcpy(words[i], word)<span class='expansion'>__builtin___strcpy_chk (words[i], word, __builtin_object_size<br> (words[i], 2 &gt; 1 ? 1 : 0))</span></span>;</td></tr>
+<tr><td class="num" id="LN86">86</td><td class="line">      <span class='keyword'>if</span> (verbose) {</td></tr>
+<tr><td class="num" id="LN87">87</td><td class="line">        printf(<span class='string_literal'>"[%i] %s - %lu\n"</span>, i, words[i], strlen(words[i]));</td></tr>
+<tr><td class="num" id="LN88">88</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN89">89</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN90">90</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN91">91</td><td class="line">    <span class='keyword'>int</span> key_is_new;</td></tr>
+<tr><td class="num" id="LN92">92</td><td class="line">    khint_t known_words_it; <span class='comment'>// hash map iterator.</span></td></tr>
+<tr><td class="num" id="LN93">93</td><td class="line">    <span class='macro'>khash_t(known_words)<span class='expansion'>kh_known_words_t</span></span> *known_words_ptr; <span class='comment'>// hash map pointer.</span></td></tr>
+<tr><td class="num" id="LN94">94</td><td class="line">    known_words_ptr = <span class='macro'>kh_init(known_words)<span class='expansion'>kh_init_known_words()</span></span>; <span class='comment'>// initialize the hash map.</span></td></tr>
+<tr><td class="num" id="LN95">95</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN96">96</td><td class="line">    <span class='keyword'>unsigned</span> <span class='keyword'>int</span> max_wordcount = 0;</td></tr>
+<tr><td class="num" id="LN97">97</td><td class="line">    <span class='keyword'>for</span> (<span class='keyword'>unsigned</span> <span class='keyword'>int</span> i = 0; i &lt; total_wordcount; i++) {</td></tr>
+<tr><td class="num" id="LN98">98</td><td class="line">      <span class='keyword'>unsigned</span> <span class='keyword'>int</span> count = 0;</td></tr>
+<tr><td class="num" id="LN99">99</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN100">100</td><td class="line">      <span class='keyword'>for</span> (<span class='keyword'>unsigned</span> <span class='keyword'>int</span> j = 0; j &lt; total_wordcount; j++) {</td></tr>
+<tr><td class="num" id="LN101">101</td><td class="line">        <span class='keyword'>if</span> (strcmp(words[j], words[i]) == 0) {</td></tr>
+<tr><td class="num" id="LN102">102</td><td class="line">          count++;</td></tr>
+<tr><td class="num" id="LN103">103</td><td class="line">        }</td></tr>
+<tr><td class="num" id="LN104">104</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN105">105</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN106">106</td><td class="line">      <span class='comment'>// put current word into hashmap (if not already present):</span></td></tr>
+<tr><td class="num" id="LN107">107</td><td class="line">      <span class='macro'>kh_put(known_words, known_words_ptr, words[i], &amp;key_is_new)<span class='expansion'>kh_put_known_words(known_words_ptr, words[i], &amp;key_is_new<br>)</span></span>;</td></tr>
+<tr><td class="num" id="LN108">108</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN109">109</td><td class="line">      <span class='comment'>// if we encountered the word for the first time update the count:</span></td></tr>
+<tr><td class="num" id="LN110">110</td><td class="line">      <span class='keyword'>if</span> (key_is_new) {</td></tr>
+<tr><td class="num" id="LN111">111</td><td class="line">        known_words_it = <span class='macro'>kh_get(known_words, known_words_ptr, words[i])<span class='expansion'>kh_get_known_words(known_words_ptr, words[i])</span></span>;</td></tr>
+<tr><td class="num" id="LN112">112</td><td class="line">        <span class='macro'>kh_value(known_words_ptr, known_words_it)<span class='expansion'>((known_words_ptr)-&gt;vals[known_words_it])</span></span> = count;</td></tr>
+<tr><td class="num" id="LN113">113</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN114">114</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN115">115</td><td class="line">      <span class='comment'>// keep track of the count of the highest occurring word to make sorting easier:</span></td></tr>
+<tr><td class="num" id="LN116">116</td><td class="line">      <span class='keyword'>if</span> (max_wordcount &lt; count) {</td></tr>
+<tr><td class="num" id="LN117">117</td><td class="line">        max_wordcount = count;</td></tr>
+<tr><td class="num" id="LN118">118</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN119">119</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN120">120</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN121">121</td><td class="line">    <span class='keyword'>if</span> (verbose) {</td></tr>
+<tr><td class="num" id="LN122">122</td><td class="line">      printf(<span class='string_literal'>"Number of unique words: %i\n"</span>, <span class='macro'>kh_size(known_words_ptr)<span class='expansion'>((known_words_ptr)-&gt;size)</span></span>);</td></tr>
+<tr><td class="num" id="LN123">123</td><td class="line">      printf(<span class='string_literal'>"Highest wordcount: %i\n"</span>, max_wordcount);</td></tr>
+<tr><td class="num" id="LN124">124</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN125">125</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN126">126</td><td class="line">    <span class='comment'>// write words ordered descendingly by occurrences:</span></td></tr>
+<tr><td class="num" id="LN127">127</td><td class="line">    <span class='keyword'>while</span> (max_wordcount &gt; 0) {</td></tr>
+<tr><td class="num" id="LN128">128</td><td class="line">      <span class='keyword'>for</span> (known_words_it = <span class='macro'>kh_begin(known_words_ptr)<span class='expansion'>(khint_t)(0)</span></span>;</td></tr>
+<tr><td class="num" id="LN129">129</td><td class="line">           known_words_it != <span class='macro'>kh_end(known_words_ptr)<span class='expansion'>((known_words_ptr)-&gt;n_buckets)</span></span>;</td></tr>
+<tr><td class="num" id="LN130">130</td><td class="line">           ++known_words_it) {</td></tr>
+<tr><td class="num" id="LN131">131</td><td class="line">        <span class='keyword'>if</span> (<span class='macro'>kh_exist(known_words_ptr, known_words_it)<span class='expansion'>(!(((known_words_ptr)-&gt;flags[(known_words_it)&gt;&gt;4]&gt;&gt;<br>(((known_words_it)&amp;0xfU)&lt;&lt;1))&amp;3))</span></span>) {</td></tr>
+<tr><td class="num" id="LN132">132</td><td class="line">          <span class='keyword'>unsigned</span> <span class='keyword'>int</span> count = <span class='macro'>kh_val(known_words_ptr, known_words_it)<span class='expansion'>((known_words_ptr)-&gt;vals[known_words_it])</span></span>;</td></tr>
+<tr><td class="num" id="LN133">133</td><td class="line">          <span class='keyword'>const</span> <span class='keyword'>char</span> *current_word = <span class='macro'>kh_key(known_words_ptr, known_words_it)<span class='expansion'>((known_words_ptr)-&gt;keys[known_words_it])</span></span>;</td></tr>
+<tr><td class="num" id="LN134">134</td><td class="line">          <span class='keyword'>if</span> (max_wordcount == count) {</td></tr>
+<tr><td class="num" id="LN135">135</td><td class="line">            fprintf(statistic_fd, <span class='string_literal'>"%s: %i\n"</span>, current_word, count);</td></tr>
+<tr><td class="num" id="LN136">136</td><td class="line">          }</td></tr>
+<tr><td class="num" id="LN137">137</td><td class="line">        }</td></tr>
+<tr><td class="num" id="LN138">138</td><td class="line">      }</td></tr>
+<tr><td class="num" id="LN139">139</td><td class="line">      max_wordcount--;</td></tr>
+<tr><td class="num" id="LN140">140</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN141">141</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN142">142</td><td class="line">    <span class='comment'>// free memory of the words array elements:</span></td></tr>
+<tr><td class="num" id="LN143">143</td><td class="line">    <span class='keyword'>for</span> (<span class='keyword'>unsigned</span> <span class='keyword'>long</span> i = 0; i &lt; total_wordcount; i++) {</td></tr>
+<tr><td class="num" id="LN144">144</td><td class="line">      free(words[i]);</td></tr>
+<tr><td class="num" id="LN145">145</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN146">146</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN147">147</td><td class="line">    free(words); <span class='comment'>// free memory of the words array itself.</span></td></tr>
+<tr><td class="num" id="LN148">148</td><td class="line">    <span class='macro'>kh_destroy(known_words, known_words_ptr)<span class='expansion'>kh_destroy_known_words(known_words_ptr)</span></span>; <span class='comment'>// free memory of the hash map.</span></td></tr>
+<tr><td class="num" id="LN149">149</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN150">150</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN151">151</td><td class="line">  <span class='keyword'>return</span> <span class='macro'>true<span class='expansion'>1</span></span>;</td></tr>
+<tr><td class="num" id="LN152">152</td><td class="line">}</td></tr>
+<tr><td class="num" id="LN153">153</td><td class="line"> </td></tr>
+<tr><td class="num" id="LN154">154</td><td class="line"><span class='keyword'>_Bool</span> print_file(FILE *fd) {</td></tr>
+<tr><td class="num" id="LN155">155</td><td class="line">  <span class='keyword'>if</span> (!fd) {</td></tr>
+<tr><td class="num" id="LN156">156</td><td class="line">    printf(<span class='string_literal'>"Error reading file!\n"</span>);</td></tr>
+<tr><td class="num" id="LN157">157</td><td class="line">    <span class='keyword'>return</span> <span class='macro'>false<span class='expansion'>0</span></span>;</td></tr>
+<tr><td class="num" id="LN158">158</td><td class="line">  } <span class='keyword'>else</span> {</td></tr>
+<tr><td class="num" id="LN159">159</td><td class="line">    <span class='keyword'>char</span> c;</td></tr>
+<tr><td class="num" id="LN160">160</td><td class="line">    <span class='keyword'>while</span> ((c = (<span class='keyword'>char</span>)fgetc(fd)) != <span class='macro'>EOF<span class='expansion'>(-1)</span></span>) {</td></tr>
+<tr><td class="num" id="LN161">161</td><td class="line">      printf(<span class='string_literal'>"%c"</span>, c);</td></tr>
+<tr><td class="num" id="LN162">162</td><td class="line">    }</td></tr>
+<tr><td class="num" id="LN163">163</td><td class="line">  }</td></tr>
+<tr><td class="num" id="LN164">164</td><td class="line">  <span class='keyword'>return</span> <span class='macro'>true<span class='expansion'>1</span></span>;</td></tr>
+<tr><td class="num" id="LN165">165</td><td class="line">}</td></tr>
+<tr><td class="num" id="LN166">166</td><td class="line"> </td></tr>
+</table></body></html>

@@ -104,7 +104,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       }
 
       // put current word into hashmap (if not already present):
-      known_words_it = kh_put(known_words, known_words_ptr, words[i], &key_is_new);
+      kh_put(known_words, known_words_ptr, words[i], &key_is_new);
 
       // if we encountered the word for the first time update the count:
       if (key_is_new) {
