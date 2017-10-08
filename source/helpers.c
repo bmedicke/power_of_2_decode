@@ -47,7 +47,7 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
     printf("Invalid files!\n");
     return false;
   } else {
-    char buffer[CHUNKSIZE+1]; // CHUNK + NUL.
+    char buffer[CHUNKSIZE + 1]; // CHUNK + NUL.
     // read until EOF:
     while (fread(buffer, 1, CHUNKSIZE, encoded_fd) > 0) {
       buffer[CHUNKSIZE] = '\0';
