@@ -59,7 +59,7 @@ All code not written by me is in the `vendor` folder.
 
 - [klib](https://github.com/attractivechaos/klib), MIT licensed
   - specifically `khash.h` for a hash map storing the count of the occurrences for the decoded words.
-  - reasoning: fast, single file, independent libraries; used in big projects (e.g. [Neovim](https://github.com/neovim/neovim))
+  - reasoning: fast, single file (header only), independent libraries; used in big projects (e.g. [Neovim](https://github.com/neovim/neovim))
 
 # useful links and notes
 
