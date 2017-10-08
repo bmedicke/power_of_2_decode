@@ -74,6 +74,11 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     unsigned long total_wordcount = count_words(decoded_fd);
     rewind(decoded_fd);
 
+    if (total_wordcount == 0) {
+      printf("No words found!\n");
+      return false;
+    }
+
     // create dynamic array with 'total_wordcount' pointers to strings:
     char **words;
     words = malloc(total_wordcount * sizeof(char *));

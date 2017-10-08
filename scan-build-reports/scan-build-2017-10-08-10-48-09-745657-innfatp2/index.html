@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>expert-task - analyzer results</title>
+    <link type="text/css" rel="stylesheet" href="scanview.css"/>
+    <script type='text/javascript' src="sorttable.js"></script>
+    <script type='text/javascript' src='selectable.js'></script>
+  </head>
+<!-- SUMMARYENDHEAD -->
+  <body>
+    <h1>expert-task - analyzer results</h1>
+    <table>
+      <tr><th>User:</th><td>ben@finestrino.local</td></tr>
+      <tr><th>Working Directory:</th><td>/Users/ben/Documents/projects/expert-task</td></tr>
+      <tr><th>Command Line:</th><td>/usr/local/bin/scan-build --stats -o scan-build-reports make</td></tr>
+      <tr><th>Clang Version:</th><td>Apple LLVM version 9.0.0 (clang-900.0.37)</td></tr>
+      <tr><th>Date:</th><td>Sun Oct  8 10:48:12 2017</td></tr>
+    </table>
+    <h2>Bug Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <td>Bug Type</td>
+          <td>Quantity</td>
+          <td class="sorttable_nosort">Display?</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="font-weight:bold">
+          <td class="SUMM_DESC">All Bugs</td>
+          <td class="Q">19</td>
+          <td>
+            <center>
+              <input checked type="checkbox" id="AllBugsCheck"
+                     onClick="CopyCheckedStateToCheckButtons(this);"/>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <th>Internal Statistics</th><th colspan=2></th>
+        </tr>
+        <tr>
+          <td class="SUMM_DESC">Analyzer Statistics</td>
+          <td class="Q">8</td>
+          <td>
+            <center>
+              <input checked type="checkbox"
+                     onClick="ToggleDisplay(this,'bt_internal_statistics_analyzer_statistics');"/>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td class="SUMM_DESC">Sink Point</td>
+          <td class="Q">6</td>
+          <td>
+            <center>
+              <input checked type="checkbox"
+                     onClick="ToggleDisplay(this,'bt_internal_statistics_sink_point');"/>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <th>Logic error</th><th colspan=2></th>
+        </tr>
+        <tr>
+          <td class="SUMM_DESC">Uninitialized argument value</td>
+          <td class="Q">3</td>
+          <td>
+            <center>
+              <input checked type="checkbox"
+                     onClick="ToggleDisplay(this,'bt_logic_error_uninitialized_argument_value');"/>
+            </center>
+          </td>
+        </tr>
+        <tr>
+          <td class="SUMM_DESC">Assigned value is garbage or undefined</td>
+          <td class="Q">2</td>
+          <td>
+            <center>
+              <input checked type="checkbox"
+                     onClick="ToggleDisplay(this,'bt_logic_error_assigned_value_is_garbage_or_undefined');"/>
+            </center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<!-- SUMMARYBUGEND -->
+    <h2>Reports</h2>
+    <table class="sortable" style="table-layout:automatic">
+      <thead>
+        <tr>
+          <td>Bug Group</td>
+          <td class="sorttable_sorted">
+            Bug Type
+            <span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span>
+          </td>
+          <td>File</td>
+          <td>Function/Method</td>
+          <td class="Q">Line</td>
+          <td class="Q">Path Length</td>
+          <td class="sorttable_nosort"></td>
+        </tr>
+      </thead>
+      <tbody>
+<!-- REPORTBUGCOL -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">print_file</td>
+          <td class="Q">159</td>
+          <td class="Q">1</td>
+          <td><a href="report-15a35c.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-15a35c.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/main.c</td>
+          <td class="DESC">main</td>
+          <td class="Q">28</td>
+          <td class="Q">1</td>
+          <td><a href="report-176ff8.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-176ff8.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/decode.c</td>
+          <td class="DESC">verbose_decode</td>
+          <td class="Q">24</td>
+          <td class="Q">1</td>
+          <td><a href="report-38f238.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-38f238.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">kh_clear_known_words</td>
+          <td class="Q">17</td>
+          <td class="Q">1</td>
+          <td><a href="report-39df58.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-39df58.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/decode.c</td>
+          <td class="DESC">decode_character</td>
+          <td class="Q">11</td>
+          <td class="Q">1</td>
+          <td><a href="report-3e3496.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-3e3496.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_statistics</td>
+          <td class="Q">134</td>
+          <td class="Q">1</td>
+          <td><a href="report-41b631.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-41b631.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_decoded_text</td>
+          <td class="Q">52</td>
+          <td class="Q">1</td>
+          <td><a href="report-4d7ae8.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-4d7ae8.html" -->
+        <tr class="bt_logic_error_uninitialized_argument_value">
+          <td class="DESC">Logic error</td>
+          <td class="DESC">Uninitialized argument value</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">kh_put_known_words</td>
+          <td class="Q">17</td>
+          <td class="Q">16</td>
+          <td><a href="report-559fb8.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-559fb8.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">print_manual</td>
+          <td class="Q">25</td>
+          <td class="Q">1</td>
+          <td><a href="report-5b2b4c.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-5b2b4c.html" -->
+        <tr class="bt_logic_error_uninitialized_argument_value">
+          <td class="DESC">Logic error</td>
+          <td class="DESC">Uninitialized argument value</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_statistics</td>
+          <td class="Q">106</td>
+          <td class="Q">9</td>
+          <td><a href="report-5cee00.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-5cee00.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/decode.c</td>
+          <td class="DESC">verbose_decode</td>
+          <td class="Q">26</td>
+          <td class="Q">1</td>
+          <td><a href="report-5d3743.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-5d3743.html" -->
+        <tr class="bt_logic_error_uninitialized_argument_value">
+          <td class="DESC">Logic error</td>
+          <td class="DESC">Uninitialized argument value</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">kh_get_known_words</td>
+          <td class="Q">17</td>
+          <td class="Q">17</td>
+          <td><a href="report-68cab6.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-68cab6.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_statistics</td>
+          <td class="Q">69</td>
+          <td class="Q">1</td>
+          <td><a href="report-70e43b.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-70e43b.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">print_file</td>
+          <td class="Q">165</td>
+          <td class="Q">1</td>
+          <td><a href="report-7a759d.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-7a759d.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/main.c</td>
+          <td class="DESC">main</td>
+          <td class="Q">43</td>
+          <td class="Q">1</td>
+          <td><a href="report-7e6563.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-7e6563.html" -->
+        <tr class="bt_logic_error_assigned_value_is_garbage_or_undefined">
+          <td class="DESC">Logic error</td>
+          <td class="DESC">Assigned value is garbage or undefined</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_statistics</td>
+          <td class="Q">138</td>
+          <td class="Q">24</td>
+          <td><a href="report-a23631.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-a23631.html" -->
+        <tr class="bt_logic_error_assigned_value_is_garbage_or_undefined">
+          <td class="DESC">Logic error</td>
+          <td class="DESC">Assigned value is garbage or undefined</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_statistics</td>
+          <td class="Q">137</td>
+          <td class="Q">22</td>
+          <td><a href="report-ea0ad3.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-ea0ad3.html" -->
+        <tr class="bt_internal_statistics_sink_point">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Sink Point</td>
+          <td>source/decode.c</td>
+          <td class="DESC">decode_character</td>
+          <td class="Q">13</td>
+          <td class="Q">1</td>
+          <td><a href="report-f0aa37.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-f0aa37.html" -->
+        <tr class="bt_internal_statistics_analyzer_statistics">
+          <td class="DESC">Internal Statistics</td>
+          <td class="DESC">Analyzer Statistics</td>
+          <td>source/helpers.c</td>
+          <td class="DESC">write_decoded_text</td>
+          <td class="Q">45</td>
+          <td class="Q">1</td>
+          <td><a href="report-f14480.html#EndPath">View Report</a></td>
+        </tr>
+<!-- REPORTBUG id="report-f14480.html" -->
+      </tbody>
+    </table>
+<!-- REPORTBUGEND -->
+  </body>
+</html>
