@@ -100,7 +100,7 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     char word[MAXWORDSIZE + 1]; // 1 extra char for \0.
     for (unsigned int i = 0; fscanf(decoded_fd, "%" STR(MAXWORDSIZE) "s", word) == 1; i++) {
       // create dynamic char array to hold the current word:
-      words[i] = malloc(strlen(word) + 1);
+      words[i] = malloc(sizeof(word));
       strcpy(words[i], word);
       if (verbose) {
         printf("malloc >> [%i] %s - %lu\n", i, words[i], strlen(words[i]));
