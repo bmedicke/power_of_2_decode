@@ -14,7 +14,7 @@
 #include <string.h> // strlen().
 
 #include "helpers.h"
-#include "decode.h" // decode_character(), verbose_decode().
+#include "decode.h" // decode_character()
 #include "khash.h" // for a hashmap.
 
 // create hashmap with str as keys and int as values:
@@ -69,10 +69,7 @@ _Bool write_decoded_text(FILE *encoded_fd, FILE *decoded_fd, _Bool verbose) {
     while (fread(buffer, 1, CHUNKSIZE, encoded_fd) > 0) {
       buffer[CHUNKSIZE] = '\0';
       unsigned long encoded_char = strtoul(buffer, NULL, 2);
-      if (verbose) {
-        verbose_decode(encoded_char, buffer);
-      }
-      char decoded_char = decode_character(encoded_char);
+      char decoded_char = decode_character(encoded_char, buffer, verbose);
       if (decoded_char == -1) {
         printf("Decode failed! Make sure to use a valid input file.\n");
         return false;
