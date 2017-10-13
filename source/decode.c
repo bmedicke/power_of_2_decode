@@ -11,10 +11,11 @@
 #include <stdio.h>
 #include "decode.h"
 
-char decode_character(unsigned long encoded_char, char *buffer, _Bool verbose) {
+char decode_character(unsigned long encoded_char, char *buffer,
+                      _Bool verbose) {
   // try decoding with cipher 2^0 to 2^8:
   for (unsigned int cipher = 1; cipher <= 256; cipher *= 2) {
-       unsigned long test_case = encoded_char / cipher;
+    unsigned long test_case = encoded_char / cipher;
 
     // expecting ASCII: 65(A) - 90(Z) + 32(space):
     if ((test_case >= 65 && test_case <= 90) || test_case == 32) {
