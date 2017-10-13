@@ -107,11 +107,12 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
       }
     }
 
-    int key_is_new;
     khint_t known_words_it; // hash map iterator.
     khash_t(known_words) *known_words_ptr; // hash map pointer.
     known_words_ptr = kh_init(known_words); // initialize the hash map.
+    int key_is_new;
 
+    // count each occurrence:
     unsigned int max_wordcount = 0;
     for (unsigned int i = 0; i < total_wordcount; i++) {
       unsigned int count = 0;
