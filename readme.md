@@ -112,3 +112,4 @@ add paths to `.ycm_extra_conf.py`.
 
 - can't handle words longer than `MAXWORDSIZE` defined in `helpers.c`
 - order of words with same count is semi-random (based on hash table)
+- assumes there's enough memory available to store entire decoded file

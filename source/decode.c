@@ -17,7 +17,7 @@ char decode_character(unsigned long encoded_char, char *buffer,
   for (unsigned int cipher = 1; cipher <= 256; cipher *= 2) {
     unsigned long test_case = encoded_char / cipher;
 
-    // expecting ASCII: 65(A) - 90(Z) + 32(space):
+    // looking for ASCII: 65(A) - 90(Z) + 32(space):
     if ((test_case >= 65 && test_case <= 90) || test_case == 32) {
       if (verbose) {
         printf("decode >> %.16s\t%lu\t%d\t%c\n",
