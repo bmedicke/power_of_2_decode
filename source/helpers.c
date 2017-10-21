@@ -135,6 +135,10 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
     }
   }
 
+  if (verbose) {
+    printf("info >> Highest wordcount: %i\n", max_wordcount);
+  }
+
   // write words ordered descendingly by occurrences:
   while (max_wordcount > 0) {
     for (known_words_it = kh_begin(known_words_ptr);
@@ -154,7 +158,6 @@ _Bool write_statistics(FILE *decoded_fd, FILE *statistic_fd, _Bool verbose) {
   if (verbose) {
     printf("info >> Total wordcount: %lu\n", total_wordcount);
     printf("info >> Number of unique words: %i\n", kh_size(known_words_ptr));
-    printf("info >> Highest wordcount: %i\n", max_wordcount);
   }
 
   // free memory of the words array elements:
