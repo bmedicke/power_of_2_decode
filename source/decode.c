@@ -14,7 +14,7 @@
 char decode_character(unsigned long encoded_char, char *buffer,
                       _Bool verbose) {
   // try decoding with cipher 2^0 to 2^8:
-  for (unsigned int cipher = 1; cipher <= 256; cipher *= 2) {
+  for (unsigned int cipher = 1; cipher <= 256; cipher <<= 1) {
     unsigned long test_case = encoded_char / cipher;
 
     // looking for ASCII: 65(A) - 90(Z) + 32(space):
