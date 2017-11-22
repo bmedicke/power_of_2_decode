@@ -40,7 +40,7 @@ KHASH_MAP_INIT_STR(known_words, unsigned int)
 #define STR2(x) #x
 
 void print_manual(void) {
-  printf( "Required arguemtns:\n"
+  printf( "Required arguments:\n"
           "\t-i <encoded input file>\n"
           "\t-o <decoded output file for decoded string>\n"
           "\t-s <file for statistics>\n"

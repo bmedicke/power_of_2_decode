@@ -1,0 +1,2 @@
+- Fehlermeldungen auf stderr
+- jedes Programm sollte ein `-h` haben
